@@ -1,21 +1,24 @@
 extends CharacterBody2D
 
-var dir = Vector2.ZERO
 const SPEED = 96
 
 
-func _process(delta: float) -> void:
-	if dir != 0:
-		velocity = dir * SPEED * delta 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("UP"):
-		direction.y = -1
-	if Input.is_action_just_pressed("DOWN"):
-		dir.y = 1
-	if Input.is_action_just_pressed("RIGHT"):
-		dir.x = -1
-	if Input.is_action_just_pressed("LEFT"):
-		dir.x = 1
-	else:
-		dir = 0
-		
+func _physics_process(delta: float) -> void:
+	var dir = get_input_direction()
+	velocity = dir * SPEED * delta 
+
+func get_input_direction() -> Vector2:
+	var dir := Vector2.ZERO
+	if Input.is_action_pressed("UP"): 
+		dir.y -= 1
+		print("UP")
+	if Input.is_action_pressed("DOWN"): 
+		dir.y += 1
+		print("DOWNwda")
+	if Input.is_action_pressed("LEFT"): 
+		dir.x -= 1
+		print("LEFT")
+	if Input.is_action_pressed("RIGHT"): 
+		dir.x += 1
+		print("RIGHT")
+	return dir
