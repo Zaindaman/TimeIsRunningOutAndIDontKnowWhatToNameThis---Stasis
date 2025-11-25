@@ -4,9 +4,16 @@ const SPEED = 96
 const GRAVITY = 500
 const JUMP_FORCE = -200
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 func _physics_process(delta: float) -> void:
 	var dir = get_input_direction()
-
+	if Input.is_action_just_pressed("CallBulletTime"):
+		if GlobalValues.IsBulletTime == true:
+			GlobalValues.IsBulletTime = false
+		else:
+			GlobalValues.IsBulletTime = true
+		
 	# Horizontal movement
 	velocity.x = dir.x * SPEED
 
