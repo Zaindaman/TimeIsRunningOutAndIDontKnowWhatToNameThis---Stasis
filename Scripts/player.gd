@@ -43,3 +43,8 @@ func get_input_direction() -> Vector2:
 		dir.y += 1
 
 	return dir
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Reset_zone"):
+		pass
