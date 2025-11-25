@@ -11,8 +11,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("CallBulletTime"):
 		if GlobalValues.IsBulletTime == true:
 			GlobalValues.IsBulletTime = false
+			$Label.text = "Bullet time NOT ACTIVE"
 		else:
 			GlobalValues.IsBulletTime = true
+			$Label.text = "Bullet time ACTIVE"
 		
 	# Horizontal movement
 	velocity.x = dir.x * SPEED

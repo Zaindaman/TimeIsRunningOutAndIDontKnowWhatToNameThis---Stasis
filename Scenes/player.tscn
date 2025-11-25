@@ -44,9 +44,18 @@ radius = 23.086792
 script = ExtResource("1_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -154.0
+offset_top = -320.0
+offset_right = 586.0
+offset_bottom = -165.0
+theme_override_font_sizes/font_size = 64
+text = "Bullet time NOT ACTIVE "
