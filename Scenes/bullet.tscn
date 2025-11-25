@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bg4yd5lrm58en" path="res://icon.svg" id="1_xjght"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
-size = Vector2(128, 51)
+size = Vector2(128, 53)
 
 [node name="Bullet" type="CharacterBody2D"]
 
@@ -13,5 +13,5 @@ scale = Vector2(1, 0.40624997)
 texture = ExtResource("1_xjght")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_oduel")
