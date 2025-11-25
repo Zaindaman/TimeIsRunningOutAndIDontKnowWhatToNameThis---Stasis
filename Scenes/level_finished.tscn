@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddiqekn5jca4f"]
+
+[ext_resource type="Script" uid="uid://cleokvjusfcrh" path="res://Scenes/level_finished.gd" id="1_2b7xb"]
+
+[node name="Level_finished" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2b7xb")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 85.0
+offset_right = 648.0
+offset_bottom = 243.0
+text = "LVL STATS:"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You finished the lvl"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 55.0
+offset_right = 212.0
+offset_bottom = 150.0
+text = "next lvl
+"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 153.0
+offset_right = 215.0
+offset_bottom = 248.0
+text = "menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
