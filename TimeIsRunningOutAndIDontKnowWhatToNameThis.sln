@@ -1,28 +1,19 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34330.188
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeIsRunningOutAndIDontKnowWhatToNameThis", "TimeIsRunningOutAndIDontKnowWhatToNameThis.csproj", "{AC7D4FC1-623F-467A-82B4-E62991881AF2}"
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeIsRunningOutAndIDontKnowWhatToNameThis", "TimeIsRunningOutAndIDontKnowWhatToNameThis.csproj", "{0633B1D6-6442-4C44-A355-2832DA7EC1EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		ExportDebug|Any CPU = ExportDebug|Any CPU
-		ExportRelease|Any CPU = ExportRelease|Any CPU
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{AC7D4FC1-623F-467A-82B4-E62991881AF2}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {481FDE8D-227E-4736-970C-3FA5A37251AB}
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{0633B1D6-6442-4C44-A355-2832DA7EC1EB}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
