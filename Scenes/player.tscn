@@ -44,7 +44,6 @@ radius = 16.03122
 radius = 20.024984
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 3
 script = ExtResource("1_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]

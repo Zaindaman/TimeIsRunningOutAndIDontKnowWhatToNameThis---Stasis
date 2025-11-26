@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 		dir = Vector2(1, 0).rotated(rotation)
 	
 	velocity.x = dir.x * speed
-	velocity.y = dir.y * speed + gravity * delta
+	velocity.y += gravity * delta
 
 	move_and_slide()
 

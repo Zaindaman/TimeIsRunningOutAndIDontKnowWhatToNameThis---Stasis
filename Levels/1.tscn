@@ -139,7 +139,8 @@ texture = SubResource("CompressedTexture2D_ilmct")
 7:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_y0prk"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_dhllp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0prk"]
@@ -156,6 +157,7 @@ tile_map_data = PackedByteArray("AAD5/wMAAAAEAAAAAAD6/wMAAAAEAAAAAAD7/wMAAAAEAAA
 tile_set = SubResource("TileSet_y0prk")
 
 [node name="Player" parent="." instance=ExtResource("1_dhllp")]
+collision_mask = 1
 
 [node name="Spike" parent="." instance=ExtResource("2_y0prk")]
 position = Vector2(93, 49)
@@ -174,13 +176,14 @@ shape = SubResource("RectangleShape2D_y0prk")
 position = Vector2(175, -8)
 
 [node name="Area2D" type="Area2D" parent="End" groups=["end level", "end_level"]]
+position = Vector2(88, -35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D" groups=["end level", "end_level"]]
 position = Vector2(101, 8)
 shape = SubResource("RectangleShape2D_0nkm3")
 
 [node name="Begin" type="Node2D" parent="."]
-position = Vector2(-109, -1)
+position = Vector2(141, 5)
 
 [node name="Enemy_basic" parent="." instance=ExtResource("3_0nkm3")]
 position = Vector2(33, 31)

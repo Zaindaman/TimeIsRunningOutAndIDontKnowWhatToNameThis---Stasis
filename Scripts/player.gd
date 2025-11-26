@@ -5,6 +5,7 @@ const GRAVITY = 500
 const JUMP_FORCE = -200
 var health = 1
 var is_on_jumpable
+
 @export var chapter2 : bool = false
 var time_remaining : float = 5
 func _ready() -> void:
@@ -30,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if Input.is_action_just_pressed("UP"):
 			velocity.y = JUMP_FORCE
-
+	
 	move_and_slide()
 
 func get_input_direction() -> Vector2:
@@ -53,7 +54,6 @@ func get_input_direction() -> Vector2:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	if area.is_in_group("Reset_zone"):
-		
 		self.position = $"../Begin".position
 	elif area.is_in_group("end_level"):
 		var lvl = LevelManager.get_lvl()
@@ -67,7 +67,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	
 	if body.is_in_group("enemybounce"):
-		
 		velocity.y = JUMP_FORCE + -100

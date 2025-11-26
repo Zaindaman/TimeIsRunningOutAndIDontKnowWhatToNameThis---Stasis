@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cetyvsj3t1o4d" path="res://Scenes/laser.tscn" id="2_y063p"]
 [ext_resource type="PackedScene" uid="uid://buny7ajxygh3c" path="res://Scenes/LaserButton.tscn" id="3_txyub"]
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="4_y063p"]
-[ext_resource type="PackedScene" uid="uid://c48p1blktwb2a" path="res://Scenes/box.tscn" id="5_txyub"]
+[ext_resource type="PackedScene" uid="uid://6pcujs8wvwi8" path="res://Scenes/box.tscn" id="5_txyub"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ilmct"]
 load_path = "res://.godot/imported/new tilemap.png-b492dfc3d85392d2acd62725d731df04.ctex"

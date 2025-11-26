@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c48p1blktwb2a"]
+[gd_scene load_steps=4 format=3 uid="uid://6pcujs8wvwi8"]
 
 [ext_resource type="Script" uid="uid://if16puyg78aq" path="res://Scenes/box.gd" id="1_ego7h"]
 [ext_resource type="Texture2D" uid="uid://fukaurdhnq73" path="res://Assets/Box.png" id="2_2jyye"]
@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6vpp"]
 size = Vector2(16, 16)
 
-[node name="Box" type="RigidBody2D"]
-collision_layer = 2
-mass = 0.955
+[node name="Box" type="CharacterBody2D"]
 script = ExtResource("1_ego7h")
 
 [node name="Box" type="Sprite2D" parent="."]

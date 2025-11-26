@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 var gravity = 500
 
 
@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 
-func _physics_process(delta: float) -> void: pass
-	#if not is_on_floor():
-		#velocity.y += gravity * delta
-	#move_and_slide()
+func _process(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	move_and_slide()
