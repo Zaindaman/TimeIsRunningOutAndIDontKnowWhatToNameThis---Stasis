@@ -51,7 +51,9 @@ func get_input_direction() -> Vector2:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("area enterd player")
 	if area.is_in_group("Reset_zone"):
+		print("player atempting reset")
 		self.position = $"../Begin".position
 	elif area.is_in_group("end_level"):
 		var lvl = LevelManager.get_lvl()
@@ -61,3 +63,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		self.position = $"../Begin".position
 	elif area.is_in_group("enviromental_obi"):
 		self.position = $"../Begin".position
+
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("body enterds")
+	if body.is_in_group("enemybounce"):
+		print("Bouncing")
+		velocity.y = JUMP_FORCE + -100

@@ -24,6 +24,10 @@ LevelManager="*res://Scripts/LevelManager.gd"
 
 project/assembly_name="TimeIsRunningOutAndIDontKnowWhatToNameThis"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/andre/OneDrive/Documents/Project/They_are_among/TimeIsRunningOutAndIDontKnowWhatToNameThis/test vid.avi"
+
 [file_customization]
 
 folder_colors={
@@ -39,7 +43,7 @@ Reset_zone="if player enters uwse this to get player to check if collison "
 end_level=""
 enemy=""
 enviromental_obi=""
-activator=""
+enemybounce=""
 
 [input]
 

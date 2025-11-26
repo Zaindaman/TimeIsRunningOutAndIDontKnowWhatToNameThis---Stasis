@@ -160,14 +160,14 @@ tile_set = SubResource("TileSet_y0prk")
 [node name="Spike" parent="." instance=ExtResource("2_y0prk")]
 position = Vector2(93, 49)
 
-[node name="Death Zone" type="Node2D" parent="."]
+[node name="Death Zone" type="Node2D" parent="." groups=["Reset_zone"]]
 position = Vector2(72, 14)
 
-[node name="Area2D" type="Area2D" parent="Death Zone" groups=["end level"]]
-position = Vector2(-70, 119)
+[node name="Area2D" type="Area2D" parent="Death Zone" groups=["end level", "enviromental_obi"]]
+position = Vector2(-73, 227)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Death Zone/Area2D" groups=["Reset_zone"]]
-position = Vector2(0.25, 263)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death Zone/Area2D" groups=["Reset_zone", "enviromental_obi"]]
+position = Vector2(0.25, -1)
 shape = SubResource("RectangleShape2D_y0prk")
 
 [node name="End" type="Node2D" parent="."]
@@ -184,3 +184,4 @@ position = Vector2(-109, -1)
 
 [node name="Enemy_basic" parent="." instance=ExtResource("3_0nkm3")]
 position = Vector2(33, 31)
+scale = Vector2(-1, 1)
