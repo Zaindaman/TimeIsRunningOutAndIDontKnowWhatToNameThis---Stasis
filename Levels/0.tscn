@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://duxcn08pyk2mp"]
+[gd_scene load_steps=10 format=4 uid="uid://duxcn08pyk2mp"]
 
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_6lcx4"]
 [ext_resource type="Texture2D" uid="uid://c4skymh460tqt" path="res://Assets/new tilemap.png" id="2_7g0wd"]
-[ext_resource type="PackedScene" uid="uid://sdc63bs26c0b" path="res://Scenes/e_nemy_thing.tscn" id="3_u6fc8"]
-[ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="4_6lcx4"]
+[ext_resource type="PackedScene" path="res://Scenes/e_nemy_thing.tscn" id="3_u6fc8"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy_basic.tscn" id="4_6lcx4"]
+[ext_resource type="PackedScene" uid="uid://bi3ridtlx6gui" path="res://Scenes/boomerang.tscn" id="5_7g0wd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7mb1"]
 texture = ExtResource("2_7g0wd")
@@ -182,3 +183,6 @@ shape = SubResource("RectangleShape2D_i51n5")
 
 [node name="Begin" type="Node2D" parent="."]
 position = Vector2(-181, -15)
+
+[node name="Boomerang" parent="." instance=ExtResource("5_7g0wd")]
+position = Vector2(-185, -59)
