@@ -54,3 +54,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var lvl = LevelManager.get_lvl()
 		GlobalValues.levelNumber.append(int(lvl))
 		get_tree().change_scene_to_file("res://Scenes/level_finished.tscn")
+	elif area.is_in_group("enemy"):
+		self.position = $"../Begin".position

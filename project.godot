@@ -37,6 +37,7 @@ folder_colors={
 
 Reset_zone="if player enters uwse this to get player to check if collison "
 end_level=""
+enemy=""
 
 [input]
 

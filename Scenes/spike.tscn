@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://xqyrtmn0rbmj"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_bjemy"]
+custom_solver_bias = 0.03
+points = PackedVector2Array(10, 0, -10, 0, 0, -20)
+
+[node name="Spike" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_bjemy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

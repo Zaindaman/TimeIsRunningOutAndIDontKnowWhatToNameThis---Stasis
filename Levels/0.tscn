@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://duxcn08pyk2mp"]
+[gd_scene load_steps=9 format=4 uid="uid://duxcn08pyk2mp"]
 
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_6lcx4"]
 [ext_resource type="Texture2D" uid="uid://c4skymh460tqt" path="res://Assets/new tilemap.png" id="2_7g0wd"]
 [ext_resource type="PackedScene" uid="uid://sdc63bs26c0b" path="res://Scenes/e_nemy_thing.tscn" id="3_u6fc8"]
+[ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="4_6lcx4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7mb1"]
 texture = ExtResource("2_7g0wd")
@@ -158,6 +159,9 @@ tile_set = SubResource("TileSet_m5pnw")
 [node name="ENemy thing" parent="." instance=ExtResource("3_u6fc8")]
 position = Vector2(-8, -71)
 move_distance = 100.0
+
+[node name="Enemy_basic" parent="." instance=ExtResource("4_6lcx4")]
+position = Vector2(-131, -3)
 
 [node name="Death Zone" type="Node2D" parent="."]
 
