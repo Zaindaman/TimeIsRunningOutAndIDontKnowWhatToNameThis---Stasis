@@ -1,28 +1,38 @@
 using Godot;
 using System;
-using static Godot.DisplayServer;
+using System.Collections.Generic;
 
 public partial class InversionFieldLogic : Area2D
 {
+    private readonly HashSet<CharacterBody2D> bodiesInField = new();
+
     public override void _Ready()
     {
-        ProcessMode = ProcessModeEnum.Pausable;
+        ProcessMode = ProcessModeEnum.Always;
 
-        // Connect the "body_entered" signal to a method in this script
+        // Connect signals
         BodyEntered += OnBodyEntered;
-        // Connect the "body_exited" signal if you need to know when bodies leave
         BodyExited += OnBodyExited;
     }
 
-    private void OnBodyEntered(Node2D body)
+    private void OnBodyEntered(Node body)
     {
-        GD.Print($"Body entered: {body.Name}");
+        // Only set inversion if the body has the IsInversion property
+        var prop = body.GetType().GetProperty("IsInversion");
+        if (prop != null)
+        {
+            prop.SetValue(body, true);
+            GD.Print($"{body.Name} entered inversion field");
+        }
     }
 
-
-    private void OnBodyExited(Node2D body)
+    private void OnBodyExited(Node body)
     {
-        GD.Print($"Body exited: {body.Name}");
+        var prop = body.GetType().GetProperty("IsInversion");
+        if (prop != null)
+        {
+            prop.SetValue(body, false);
+            GD.Print($"{body.Name} exited inversion field");
+        }
     }
-
 }
