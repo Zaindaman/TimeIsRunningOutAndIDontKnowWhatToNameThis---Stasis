@@ -12,11 +12,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if global_position.x > centerpos:
-		velocity.x -= 12
-	if global_position.x < centerpos:
-		velocity.x += 12
-	if rotationrate <10:
-		rotationrate+= 0.2
-	$Boomerang.rotation_degrees += rotationrate
-	move_and_slide()
+	if !GlobalValues.isBulletTime:
+		if global_position.x > centerpos:
+			velocity.x -= 12
+		if global_position.x < centerpos:
+			velocity.x += 12
+		if rotationrate <10:
+			rotationrate+= 0.2
+		
+		$Boomerang.rotation_degrees += rotationrate
+		
+		move_and_slide()
+	

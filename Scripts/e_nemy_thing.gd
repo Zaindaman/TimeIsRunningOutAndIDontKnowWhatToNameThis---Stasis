@@ -12,6 +12,9 @@ func _ready():
 func _physics_process(delta):
 	# Move enemy horizontally
 	velocity.x = speed * direction
+	if GlobalValues.isBulletTime:
+		velocity = Vector2.ZERO
+		return
 	move_and_slide()
 
 	# Turn around when reaching distance limit

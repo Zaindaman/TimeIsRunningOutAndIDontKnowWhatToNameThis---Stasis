@@ -13,7 +13,9 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = dir.x * speed
 	velocity.y += gravity * delta
-
+	if GlobalValues.isBulletTime:
+		velocity = Vector2.ZERO
+		return
 	move_and_slide()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

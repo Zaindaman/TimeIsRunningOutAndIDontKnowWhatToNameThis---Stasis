@@ -40,35 +40,47 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 16.03122
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
-radius = 20.024984
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(34, 34)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+process_mode = 3
 script = ExtResource("1_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
 zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
 shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="Label" type="Label" parent="."]
+process_mode = 3
 offset_left = -283.0
 offset_top = -160.0
 offset_right = 457.0
 offset_bottom = -5.0
 theme_override_font_sizes/font_size = 32
 text = "Bullet time NOT ACTIVE "
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
+process_mode = 3
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemybounce"]]
-shape = SubResource("CircleShape2D_6t5aa")
+process_mode = 3
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
