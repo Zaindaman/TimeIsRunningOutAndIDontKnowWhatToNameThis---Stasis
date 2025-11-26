@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://buny7ajxygh3c"]
+
+[ext_resource type="Script" uid="uid://bik88utlwxntj" path="res://Scripts/laser_button.gd" id="1_r8jrj"]
+[ext_resource type="Texture2D" uid="uid://c6ctj2kasgk8l" path="res://Assets/button sprite.png" id="1_xcx6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8jrj"]
+atlas = ExtResource("1_xcx6r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk0vq"]
+atlas = ExtResource("1_xcx6r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebg6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8jrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk0vq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk0vq"]
+size = Vector2(9, 14)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_r8jrj")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ebg6c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_jk0vq")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

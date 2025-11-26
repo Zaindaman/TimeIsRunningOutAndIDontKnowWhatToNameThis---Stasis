@@ -1,16 +1,15 @@
-[gd_scene load_steps=13 format=4 uid="uid://duxcn08pyk2mp"]
+[gd_scene load_steps=13 format=4 uid="uid://cc1gatoujcf5b"]
 
-[ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_6lcx4"]
-[ext_resource type="Texture2D" uid="uid://c4skymh460tqt" path="res://Assets/new tilemap.png" id="2_7g0wd"]
-[ext_resource type="PackedScene" path="res://Scenes/e_nemy_thing.tscn" id="3_u6fc8"]
-[ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="4_6lcx4"]
-[ext_resource type="PackedScene" uid="uid://bi3ridtlx6gui" path="res://Scenes/boomerang.tscn" id="5_7g0wd"]
-[ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="6_u6fc8"]
-[ext_resource type="PackedScene" uid="uid://cetyvsj3t1o4d" path="res://Scenes/laser.tscn" id="7_xkdt2"]
-[ext_resource type="PackedScene" uid="uid://buny7ajxygh3c" path="res://Scenes/LaserButton.tscn" id="8_ro3tw"]
+[ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_pqwfn"]
+[ext_resource type="Texture2D" uid="uid://c4skymh460tqt" path="res://Assets/new tilemap.png" id="2_plwhg"]
+[ext_resource type="PackedScene" uid="uid://sdc63bs26c0b" path="res://Scenes/e_nemy_thing.tscn" id="3_pnmg7"]
+[ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="4_rkj77"]
+[ext_resource type="PackedScene" uid="uid://bi3ridtlx6gui" path="res://Scenes/boomerang.tscn" id="5_ad1kn"]
+[ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="6_e7mfo"]
+[ext_resource type="Script" uid="uid://c6fy6mlhua00m" path="res://Levels/InversionFieldLogic.cs" id="7_mtitg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7mb1"]
-texture = ExtResource("2_7g0wd")
+texture = ExtResource("2_plwhg")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -150,21 +149,24 @@ size = Vector2(1151.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i51n5"]
 size = Vector2(20, 47)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro3tw"]
+size = Vector2(131, 75)
+
 [node name="0" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_6lcx4")]
+[node name="Player" parent="." instance=ExtResource("1_pqwfn")]
 position = Vector2(2, -19)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
-tile_map_data = PackedByteArray("AACN/8b/AAADAAAAAAD8/wEAAAADAAAAAAD9/wEAAAADAAAAAAD+/wEAAAADAAAAAAD//wEAAAADAAAAAAAAAAEAAAADAAAAAAAAAAIAAAADAAAAAAABAAIAAAADAAAAAAACAAIAAAADAAAAAAACAAEAAAADAAAAAAABAAEAAAADAAAAAAD8/wIAAAADAAAAAAD9/wIAAAADAAAAAAD+/wIAAAADAAAAAAD//wIAAAADAAAAAAADAAIAAAADAAAAAAAEAAIAAAADAAAAAAAFAAIAAAADAAAAAAAGAAIAAAADAAAAAAAHAAIAAAADAAAAAAAIAAIAAAADAAAAAAAJAAIAAAADAAAAAAAKAAIAAAADAAAAAAALAAIAAAADAAAAAAAMAAIAAAADAAAAAAANAAIAAAADAAAAAAAOAAIAAAADAAAAAAAOAAEAAAADAAAAAAANAAEAAAADAAAAAAAMAAEAAAADAAAAAAALAAEAAAADAAAAAAAKAAEAAAADAAAAAAAJAAEAAAADAAAAAAAIAAEAAAADAAAAAAAHAAEAAAADAAAAAAAGAAEAAAADAAAAAAAFAAEAAAADAAAAAAAEAAEAAAADAAAAAAADAAEAAAADAAAAAAD7/wIAAAADAAAAAAD6/wIAAAADAAAAAAD6/wEAAAADAAAAAAD5/wEAAAADAAAAAAD5/wIAAAADAAAAAAD7/wEAAAADAAAAAAD4/wEAAAADAAAAAAD3/wEAAAADAAAAAAD2/wEAAAADAAAAAAD1/wEAAAADAAAAAAD0/wEAAAADAAAAAADz/wEAAAADAAAAAADy/wEAAAADAAAAAADx/wEAAAADAAAAAADx/wIAAAADAAAAAADy/wIAAAADAAAAAADz/wIAAAADAAAAAAD0/wIAAAADAAAAAAD1/wIAAAADAAAAAAD2/wIAAAADAAAAAAD3/wIAAAADAAAAAAD4/wIAAAADAAAAAAAJAAAAAAADAAAAAAAJAP//AAADAAAAAAAKAP//AAADAAAAAAALAP//AAADAAAAAAALAP7/AAADAAAAAAAMAP7/AAADAAAAAAANAP3/AAADAAAAAAAOAP3/AAADAAAAAAAIAAAAAAADAAAAAAAKAAAAAAADAAAAAAALAAAAAAADAAAAAAAMAAAAAAADAAAAAAANAAAAAAADAAAAAAANAP//AAADAAAAAAAOAP//AAADAAAAAAAPAP//AAADAAAAAAAPAP7/AAADAAAAAAAOAP7/AAADAAAAAAANAP7/AAADAAAAAAAMAP//AAADAAAAAAAPAP3/AAADAAAAAAAPAPz/AAADAAAAAAAOAAAAAAADAAAAAAAPAAIAAAADAAAAAAAPAAEAAAADAAAAAAAPAAAAAAADAAAAAAAQAPz/AAADAAAAAAAQAP3/AAADAAAAAAAQAP7/AAADAAAAAAAQAP//AAADAAAAAAAQAAAAAAADAAAAAAAQAAEAAAADAAAAAAAQAAIAAAADAAAAAAAUAPr/AAADAAAAAAAVAPr/AAADAAAAAAAWAPr/AAADAAAAAAAXAPr/AAADAAAAAAAYAPr/AAADAAAAAAAZAPn/AAADAAAAAAAaAPn/AAADAAAAAAAbAPn/AAADAAAAAAAcAPn/AAADAAAAAAAdAPn/AAADAAAAAAAeAPn/AAADAAAAAAAfAPn/AAADAAAAAAAgAPn/AAADAAAAAAAgAPr/AAADAAAAAAAfAPr/AAADAAAAAAAeAPr/AAADAAAAAAAdAPr/AAADAAAAAAAcAPr/AAADAAAAAAAbAPr/AAADAAAAAAAaAPr/AAADAAAAAAAZAPr/AAADAAAAAAAYAPn/AAADAAAAAAAXAPn/AAADAAAAAAAWAPn/AAADAAAAAAAVAPn/AAADAAAAAAAUAPn/AAADAAAAAAA=")
+tile_map_data = PackedByteArray("AACN/8b/AAADAAAAAAD8/wEAAAADAAAAAAD9/wEAAAADAAAAAAD+/wEAAAADAAAAAAD//wEAAAADAAAAAAAAAAEAAAADAAAAAAAAAAIAAAADAAAAAAABAAIAAAADAAAAAAACAAIAAAADAAAAAAACAAEAAAADAAAAAAABAAEAAAADAAAAAAD8/wIAAAADAAAAAAD9/wIAAAADAAAAAAD+/wIAAAADAAAAAAD//wIAAAADAAAAAAADAAIAAAADAAAAAAAEAAIAAAADAAAAAAAFAAIAAAADAAAAAAAGAAIAAAADAAAAAAAHAAIAAAADAAAAAAAIAAIAAAADAAAAAAAJAAIAAAADAAAAAAAKAAIAAAADAAAAAAALAAIAAAADAAAAAAAMAAIAAAADAAAAAAANAAIAAAADAAAAAAAOAAIAAAADAAAAAAAOAAEAAAADAAAAAAANAAEAAAADAAAAAAAMAAEAAAADAAAAAAALAAEAAAADAAAAAAAKAAEAAAADAAAAAAAJAAEAAAADAAAAAAAIAAEAAAADAAAAAAAHAAEAAAADAAAAAAAGAAEAAAADAAAAAAAFAAEAAAADAAAAAAAEAAEAAAADAAAAAAADAAEAAAADAAAAAAD7/wIAAAADAAAAAAD6/wIAAAADAAAAAAD6/wEAAAADAAAAAAD5/wEAAAADAAAAAAD5/wIAAAADAAAAAAD7/wEAAAADAAAAAAD4/wEAAAADAAAAAAD3/wEAAAADAAAAAAD2/wEAAAADAAAAAAD1/wEAAAADAAAAAAD0/wEAAAADAAAAAADz/wEAAAADAAAAAADy/wEAAAADAAAAAADx/wEAAAADAAAAAADx/wIAAAADAAAAAADy/wIAAAADAAAAAADz/wIAAAADAAAAAAD0/wIAAAADAAAAAAD1/wIAAAADAAAAAAD2/wIAAAADAAAAAAD3/wIAAAADAAAAAAD4/wIAAAADAAAAAAAJAAAAAAADAAAAAAAJAP//AAADAAAAAAAKAP//AAADAAAAAAALAP//AAADAAAAAAALAP7/AAADAAAAAAAMAP7/AAADAAAAAAANAP3/AAADAAAAAAAOAP3/AAADAAAAAAAIAAAAAAADAAAAAAAKAAAAAAADAAAAAAALAAAAAAADAAAAAAAMAAAAAAADAAAAAAANAAAAAAADAAAAAAANAP//AAADAAAAAAAOAP//AAADAAAAAAAPAP//AAADAAAAAAAPAP7/AAADAAAAAAAOAP7/AAADAAAAAAANAP7/AAADAAAAAAAMAP//AAADAAAAAAAPAP3/AAADAAAAAAAPAPz/AAADAAAAAAAOAAAAAAADAAAAAAAPAAIAAAADAAAAAAAPAAEAAAADAAAAAAAPAAAAAAADAAAAAAAQAPz/AAADAAAAAAAQAP3/AAADAAAAAAAQAP7/AAADAAAAAAAQAP//AAADAAAAAAAQAAAAAAADAAAAAAAQAAEAAAADAAAAAAAQAAIAAAADAAAAAAAUAPr/AAADAAAAAAAVAPr/AAADAAAAAAAWAPr/AAADAAAAAAAXAPr/AAADAAAAAAAYAPr/AAADAAAAAAAZAPn/AAADAAAAAAAaAPn/AAADAAAAAAAbAPn/AAADAAAAAAAcAPn/AAADAAAAAAAdAPn/AAADAAAAAAAeAPn/AAADAAAAAAAfAPn/AAADAAAAAAAgAPn/AAADAAAAAAAgAPr/AAADAAAAAAAfAPr/AAADAAAAAAAeAPr/AAADAAAAAAAdAPr/AAADAAAAAAAcAPr/AAADAAAAAAAbAPr/AAADAAAAAAAaAPr/AAADAAAAAAAZAPr/AAADAAAAAAAYAPn/AAADAAAAAAAXAPn/AAADAAAAAAAWAPn/AAADAAAAAAAVAPn/AAADAAAAAAAUAPn/AAADAAAAAAASAPv/AAADAAAAAAATAPv/AAADAAAAAAATAPr/AAADAAAAAAA=")
 tile_set = SubResource("TileSet_m5pnw")
 
-[node name="ENemy thing" parent="." instance=ExtResource("3_u6fc8")]
+[node name="ENemy thing" parent="." instance=ExtResource("3_pnmg7")]
 position = Vector2(-8, -71)
 move_distance = 100.0
 
-[node name="Enemy_basic" parent="." instance=ExtResource("4_6lcx4")]
+[node name="Enemy_basic" parent="." instance=ExtResource("4_rkj77")]
 position = Vector2(-131, -3)
 
 [node name="Death Zone" type="Node2D" parent="."]
@@ -176,7 +178,7 @@ position = Vector2(0.25, 263)
 shape = SubResource("RectangleShape2D_v7mb1")
 
 [node name="End" type="Node2D" parent="."]
-position = Vector2(-211, -21)
+position = Vector2(103, -22)
 
 [node name="Area2D" type="Area2D" parent="End" groups=["end level", "end_level"]]
 
@@ -185,16 +187,20 @@ position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_i51n5")
 
 [node name="Begin" type="Node2D" parent="."]
-position = Vector2(1, -19)
+position = Vector2(-181, -15)
 
-[node name="Boomerang" parent="." instance=ExtResource("5_7g0wd")]
+[node name="Boomerang" parent="." instance=ExtResource("5_ad1kn")]
 position = Vector2(-185, -59)
 
-[node name="BulletSpawner" parent="." instance=ExtResource("6_u6fc8")]
-position = Vector2(462, -49)
+[node name="BulletSpawner" parent="." instance=ExtResource("6_e7mfo")]
+position = Vector2(234, -168)
+offsetDistance = 10.0
 
-[node name="Laser" parent="." instance=ExtResource("7_xkdt2")]
-position = Vector2(33, -56)
+[node name="InversionField" type="Area2D" parent="."]
+position = Vector2(424, -136)
+script = ExtResource("7_mtitg")
 
-[node name="Node2D" parent="." instance=ExtResource("8_ro3tw")]
-position = Vector2(231, -57)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InversionField"]
+process_mode = 3
+position = Vector2(-1.5, -18.5)
+shape = SubResource("RectangleShape2D_ro3tw")
