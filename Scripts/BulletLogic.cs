@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-// 1. Change the base class to Node2D
 public partial class BulletLogic : Node2D
 {
     [Export] public float Speed = 50f;
@@ -13,8 +12,6 @@ public partial class BulletLogic : Node2D
     private Area2D _area2D;
 
     private Timer _lifetimeTimer;
-
-    // NOTE: If you need collision detection, make the root node an Area2D and manage it there.
 
     public override void _Ready()
     {

@@ -24,15 +24,16 @@ tile_set = ExtResource("1_k7nyf")
 position = Vector2(170.601, 130)
 
 [node name="Begin" type="Node2D" parent="."]
-position = Vector2(220.60126, 38.067856)
+position = Vector2(155, 127)
 
 [node name="End" type="Node2D" parent="."]
-position = Vector2(247.136, 38.068)
+position = Vector2(535, 131)
 
 [node name="Area2D" type="Area2D" parent="End" groups=["end_level"]]
+position = Vector2(283.864, 98.932)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
-position = Vector2(282.864, 96.932)
+position = Vector2(-286.864, -94.932014)
 shape = SubResource("CircleShape2D_4p81x")
 
 [node name="Deathzone" type="Area2D" parent="." groups=["enviromental_obi"]]

@@ -38,9 +38,6 @@ public partial class BulletSpawner : CharacterBody2D
 		}
 	}
 
-	// Removed the separate PauseTimer/UnpauseTimer functions for brevity
-	// private void PauseTimer() { _myTimer.Stop(); }
-	// private void UnpauseTimer() { _myTimer.Start(); }
 
 
 	private void _on_timer_timeout()
