@@ -4,40 +4,40 @@ using System.Collections.Generic;
 
 public partial class InversionFieldLogic : Area2D
 {
-    private readonly HashSet<CharacterBody2D> bodiesInField = new();
+	private readonly HashSet<CharacterBody2D> bodiesInField = new();
 
 
-    private GlobalValues globalValues;
+	private GlobalValues globalValues;
 
 
-    public override void _Ready()
-    {
-        globalValues = GetNode<GlobalValues>("/root/GlobalValues");
+	public override void _Ready()
+	{
+		globalValues = GetNode<GlobalValues>("/root/GlobalValues");
 
-        ProcessMode = ProcessModeEnum.Always;
+		ProcessMode = ProcessModeEnum.Always;
 
-        BodyEntered += OnBodyEntered;
-        BodyExited += OnBodyExited;
-    }
+		BodyEntered += OnBodyEntered;
+		BodyExited += OnBodyExited;
+	}
 
-    private void OnBodyEntered(Node body)
-    {
+	private void OnBodyEntered(Node body)
+	{
 
-        var prop = body.GetType().GetProperty("isInversion");
+		var prop = body.GetType().GetProperty("isInversion");
 
-        body.Set("isInversion", true);
-        prop.SetValue(body, true);
-        GD.Print($"{body.Name} entered inversion field (bullet time active)");
+		body.Set("isInversion", true);
+		prop.SetValue(body, true);
+		GD.Print($"{body.Name} entered inversion field (bullet time active)");
 
-    }
+	}
 
-    private void OnBodyExited(Node body)
-    {
-        var prop = body.GetType().GetProperty("isInversion");
-        body.Set("isInversion", false);
-        prop.SetValue(body, false);
-        GD.Print($"{body.Name} exited inversion field (bullet time active)");
-    }
+	private void OnBodyExited(Node body)
+	{
+		var prop = body.GetType().GetProperty("isInversion");
+		body.Set("isInversion", false);
+		prop.SetValue(body, false);
+		GD.Print($"{body.Name} exited inversion field (bullet time active)");
+	}
 
 
 }

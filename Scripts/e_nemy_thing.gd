@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 100
 @export var move_distance: float = 200
-
+@export var XMovement = true
 var start_position: Vector2
 var direction := 1
 var isInversion
@@ -12,19 +12,36 @@ func _ready():
 	$AnimatedSprite2D2.play("default")
 	$AnimatedSprite2D.play("default")
 func _physics_process(_delta):
+	if XMovement:
 	# Move enemy horizontally
-	if isInversion and GlobalValues.isBulletTime:
+		if isInversion and GlobalValues.isBulletTime:
+			velocity.x = speed * direction
+			move_and_slide()
+			if abs(global_position.x - start_position.x) >= move_distance:
+				direction *= -1
+			return
 		velocity.x = speed * direction
+		if GlobalValues.isBulletTime:
+			velocity = Vector2.ZERO
+			return
 		move_and_slide()
-		if abs(global_position.x - start_position.x) >= move_distance:
-			direction *= -1
-		return
-	velocity.x = speed * direction
-	if GlobalValues.isBulletTime:
-		velocity = Vector2.ZERO
-		return
-	move_and_slide()
 
-	# Turn around when reaching distance limit
-	if abs(global_position.x - start_position.x) >= move_distance:
-		direction *= -1
+		# Turn around when reaching distance limit
+		if abs(global_position.y - start_position.y) >= move_distance:
+			direction *= -1
+	else:
+		if isInversion and GlobalValues.isBulletTime:
+			velocity.y = speed * direction
+			move_and_slide()
+			if abs(global_position.y - start_position.y) >= move_distance:
+				direction *= -1
+			return
+		velocity.y = speed * direction
+		if GlobalValues.isBulletTime:
+			velocity = Vector2.ZERO
+			return
+		move_and_slide()
+
+		# Turn around when reaching distance limit
+		if abs(global_position.y - start_position.y) >= move_distance:
+			direction *= -1
