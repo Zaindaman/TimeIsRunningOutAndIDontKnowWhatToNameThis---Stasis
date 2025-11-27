@@ -116,7 +116,7 @@ script = ExtResource("1_v0iea")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
-zoom = Vector2(2, 2)
+zoom = Vector2(3.375, 3.375)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
@@ -147,10 +147,10 @@ shape = SubResource("CapsuleShape2D_3smsa")
 
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
 texture_filter = 1
-offset_left = -213.00002
-offset_top = -156.00002
-offset_right = -149.00002
-offset_bottom = -139.33334
+offset_left = -126.00001
+offset_top = -92.00001
+offset_right = -62.000008
+offset_bottom = -75.333336
 scale = Vector2(1.475, 1.475)
 max_value = 5.0
 step = 0.01
@@ -160,8 +160,8 @@ texture_over = ExtResource("4_x3wgy")
 texture_progress = ExtResource("5_3smsa")
 
 [node name="HourglassUi" type="AnimatedSprite2D" parent="."]
-position = Vector2(-248, -121.99999)
-scale = Vector2(4.3437495, 4.3437495)
+position = Vector2(-147, -74)
+scale = Vector2(2.4843738, 2.4843738)
 sprite_frames = SubResource("SpriteFrames_7dp3o")
 frame = 5
 frame_progress = 1.0
