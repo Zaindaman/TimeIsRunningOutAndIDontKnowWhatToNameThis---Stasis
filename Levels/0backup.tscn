@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cc1gatoujcf5b"]
+[gd_scene load_steps=12 format=4 uid="uid://cc1gatoujcf5b"]
 
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_pqwfn"]
 [ext_resource type="Texture2D" uid="uid://c4skymh460tqt" path="res://Assets/new tilemap.png" id="2_plwhg"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="4_rkj77"]
 [ext_resource type="PackedScene" uid="uid://bi3ridtlx6gui" path="res://Scenes/boomerang.tscn" id="5_ad1kn"]
 [ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="6_e7mfo"]
-[ext_resource type="Script" uid="uid://c6fy6mlhua00m" path="res://Levels/InversionFieldLogic.cs" id="7_mtitg"]
+[ext_resource type="Script" uid="uid://c6fy6mlhua00m" path="res://Scripts/InversionFieldLogic.cs" id="7_mtitg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7mb1"]
 texture = ExtResource("2_plwhg")
@@ -146,9 +146,6 @@ sources/0 = SubResource("TileSetAtlasSource_v7mb1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7mb1"]
 size = Vector2(1151.5, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i51n5"]
-size = Vector2(20, 47)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro3tw"]
 size = Vector2(131, 75)
 
@@ -176,15 +173,6 @@ position = Vector2(-131, -3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death Zone/Area2D" groups=["Reset_zone"]]
 position = Vector2(0.25, 263)
 shape = SubResource("RectangleShape2D_v7mb1")
-
-[node name="End" type="Node2D" parent="."]
-position = Vector2(103, -22)
-
-[node name="Area2D" type="Area2D" parent="End" groups=["end level", "end_level"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D" groups=["end level", "end_level"]]
-position = Vector2(0, 13.5)
-shape = SubResource("RectangleShape2D_i51n5")
 
 [node name="Begin" type="Node2D" parent="."]
 position = Vector2(-181, -15)

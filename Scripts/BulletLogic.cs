@@ -6,6 +6,13 @@ public partial class BulletLogic : CharacterBody2D
     [Export] public float Speed = 50f;
     private float _direction = 1f; // 1 = right, -1 = left
 
+    private GlobalValues globalValues;
+
+    public override void _Ready()
+    {
+        globalValues = GetNode<GlobalValues>("/root/GlobalValues");
+    }
+
     // Backing field for inversion state
     private bool _isInversion = false;
 
@@ -20,6 +27,7 @@ public partial class BulletLogic : CharacterBody2D
         }
     }
 
+
     // Call this from the spawner to set direction
     public void SetDirection(float spawnerScaleX)
     {
@@ -28,16 +36,23 @@ public partial class BulletLogic : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        if (IsInversion)
+
+        if (globalValues.isBulletTime)
         {
-            Vector2 forward = Vector2.Zero; // bullet doesn’t move
+            if (IsInversion)
+            {
+                Vector2 forward = Transform.X * _direction;
+                Position += forward * Speed * (float)delta;
+            }
+            else
+            {
+                Vector2 forward = Vector2.Zero; // bullet doesn’t move
+            }
         }
         else
         {
             Vector2 forward = Transform.X * _direction;
             Position += forward * Speed * (float)delta;
         }
-
-
     }
 }

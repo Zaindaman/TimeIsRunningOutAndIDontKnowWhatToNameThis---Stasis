@@ -6,17 +6,15 @@ public partial class InversionFieldLogic : Area2D
 {
     private readonly HashSet<CharacterBody2D> bodiesInField = new();
 
-    // Reference to your GlobalValues node
-    [Export] public NodePath GlobalValuesPath;
+
     private GlobalValues globalValues;
+
 
     public override void _Ready()
     {
-        ProcessMode = ProcessModeEnum.Always;
+        globalValues = GetNode<GlobalValues>("/root/GlobalValues");
 
-        // Get the GlobalValues node
-        if (GlobalValuesPath != null)
-            globalValues = GetNode<GlobalValues>(GlobalValuesPath);
+        ProcessMode = ProcessModeEnum.Always;
 
         BodyEntered += OnBodyEntered;
         BodyExited += OnBodyExited;
@@ -25,7 +23,7 @@ public partial class InversionFieldLogic : Area2D
     private void OnBodyEntered(Node body)
     {
         // Only apply inversion if bullet time is active
-        if (globalValues == null || !globalValues.isBulletTime)
+        if (!globalValues.isBulletTime)
             return;
 
         var prop = body.GetType().GetProperty("IsInversion");
@@ -39,7 +37,7 @@ public partial class InversionFieldLogic : Area2D
     private void OnBodyExited(Node body)
     {
         // Only remove inversion if bullet time is active
-        if (globalValues == null || !globalValues.isBulletTime)
+        if (!globalValues.isBulletTime)
             return;
 
         var prop = body.GetType().GetProperty("IsInversion");
