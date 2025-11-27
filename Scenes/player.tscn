@@ -48,8 +48,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
-radius = 16.03122
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 9.0
+height = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(34, 34)
@@ -65,12 +66,14 @@ zoom = Vector2(2, 2)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 texture_filter = 1
+position = Vector2(-1.4901161e-06, -5.9604645e-07)
+scale = Vector2(1.1249999, 1.1249999)
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3
-shape = SubResource("CircleShape2D_cvnsp")
+shape = SubResource("CapsuleShape2D_x3wgy")
 
 [node name="Label" type="Label" parent="."]
 process_mode = 3

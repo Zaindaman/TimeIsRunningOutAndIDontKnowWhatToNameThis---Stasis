@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqyb8653upbmr"]
+[gd_scene load_steps=12 format=3 uid="uid://bqyb8653upbmr"]
 
 [ext_resource type="Script" uid="uid://c3li62bk0rfmx" path="res://Scripts/enemy_basic.gd" id="1_cbn6x"]
 [ext_resource type="Texture2D" uid="uid://bg4yd5lrm58en" path="res://icon.svg" id="2_jeixo"]
+[ext_resource type="Texture2D" uid="uid://dqwm1q0su5xmf" path="res://Assets/walking enemy.png" id="3_7h6nv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7h6nv"]
 atlas = ExtResource("2_jeixo")
@@ -18,6 +19,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4nj5u"]
 atlas = ExtResource("2_jeixo")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj2y2"]
+atlas = ExtResource("3_7h6nv")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jeixo"]
 animations = [{
@@ -38,23 +43,27 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj2y2")
+}],
 "loop": true,
 "name": &"new_animation",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7h6nv"]
-size = Vector2(32, 31)
+size = Vector2(26, 31)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jeixo"]
-size = Vector2(32, 1)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_fmwml"]
+points = PackedVector2Array(-16, -0.5, 16, -0.5, 15, -0.4, -15, -0.4)
 
 [node name="Enemy_basic" type="CharacterBody2D" groups=["enemybounce"]]
 script = ExtResource("1_cbn6x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jeixo")
+animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=["enemybounce"]]
 process_mode = 3
@@ -77,7 +86,7 @@ process_mode = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death detection"]
 process_mode = 3
 position = Vector2(0, -17.5)
-shape = SubResource("RectangleShape2D_jeixo")
+shape = SubResource("ConvexPolygonShape2D_fmwml")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Death detection" to="." method="_on_death_detection_area_entered"]

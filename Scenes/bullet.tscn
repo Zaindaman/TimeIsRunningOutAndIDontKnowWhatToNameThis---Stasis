@@ -1,31 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk17q30dh5km4"]
+[gd_scene load_steps=4 format=3 uid="uid://dk17q30dh5km4"]
 
 [ext_resource type="Script" uid="uid://b6jnu57ahcgy7" path="res://Scripts/BulletLogic.cs" id="1_oduel"]
-[ext_resource type="Texture2D" uid="uid://bg4yd5lrm58en" path="res://icon.svg" id="1_xjght"]
+[ext_resource type="Texture2D" uid="uid://ciarbgtd4dlgc" path="res://Assets/bullet.png" id="2_oduel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oduel"]
-size = Vector2(120, 44)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycag2"]
-size = Vector2(128, 53)
+size = Vector2(96, 48)
 
 [node name="Bullet" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_oduel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, 1.9999981)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_xjght")
+scale = Vector2(3, 3)
+texture = ExtResource("2_oduel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemybounce"]]
-position = Vector2(0, 3)
+position = Vector2(0, 2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_oduel")
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" groups=["enemybounce"]]
-position = Vector2(0, 2.5)
+[node name="Enemyarea" type="CollisionShape2D" parent="Area2D" groups=["enemybounce"]]
+position = Vector2(0, 2)
 scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_ycag2")
+shape = SubResource("RectangleShape2D_oduel")
