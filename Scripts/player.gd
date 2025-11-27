@@ -12,6 +12,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	self.position = $"../Begin".position
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("Reset"):
+		var lvl = LevelManager.get_lvl()
+		LevelManager.change_level(lvl)
 	var dir = get_input_direction()
 	
 	if Input.is_action_just_pressed("CallBulletTime"):
@@ -54,15 +57,18 @@ func get_input_direction() -> Vector2:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	if area.is_in_group("Reset_zone"):
-		self.position = $"../Begin".position
+		var lvl = LevelManager.get_lvl()
+		LevelManager.change_level(lvl)
 	elif area.is_in_group("end_level"):
 		var lvl = LevelManager.get_lvl()
 		GlobalValues.levelNumber.append(int(lvl))
 		get_tree().change_scene_to_file("res://Scenes/level_finished.tscn")
 	elif area.is_in_group("enemy"):
-		self.position = $"../Begin".position
+		var lvl = LevelManager.get_lvl()
+		LevelManager.change_level(lvl)
 	elif area.is_in_group("enviromental_obi"):
-		self.position = $"../Begin".position
+		var lvl = LevelManager.get_lvl()
+		LevelManager.change_level(lvl)
 
 
 
@@ -74,4 +80,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_laser_damage() -> void:
-	pass # Replace with function body.
+	var lvl = LevelManager.get_lvl()
+	LevelManager.change_level(lvl)
