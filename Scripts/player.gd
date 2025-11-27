@@ -19,6 +19,10 @@ func _physics_process(delta: float) -> void:
 	if chapter2 and GlobalValues.isBulletTime == true:
 		time_remaining -= delta
 		$TextureProgressBar2.value = time_remaining
+		if time_remaining == 0:
+			GlobalValues.isBulletTime = false
+			$Label.text = "Bullet time NOT ACTIVE"
+
 	if Input.is_action_just_pressed("Reset"):
 		var lvl = LevelManager.get_lvl()
 		LevelManager.change_level(lvl)
@@ -62,7 +66,6 @@ func get_input_direction() -> Vector2:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	
 	if area.is_in_group("Reset_zone"):
 		var lvl = LevelManager.get_lvl()
 		LevelManager.change_level(lvl)
@@ -83,6 +86,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemybounce"):
 		print("bounced")
 		velocity.y = JUMP_FORCE + -100
+	elif body.is_in_group("pickup"):
+		time_remaining += body.pickup
 	
 
 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnbawrs58ndtg"]
+
+[ext_resource type="Script" uid="uid://dcg2vmbm81w60" path="res://Scripts/clock.gd" id="1_pdqta"]
+[ext_resource type="Texture2D" uid="uid://1j0jnnj7atpf" path="res://Assets/pickup.png" id="1_s7hhp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdqta"]
+radius = 10.049875
+
+[sub_resource type="Animation" id="Animation_ga67c"]
+resource_name = "Bob"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26689708, 0.5348791, 0.79960626, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1.5), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ixnv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ixnv"]
+_data = {
+&"Bob": SubResource("Animation_ga67c"),
+&"RESET": SubResource("Animation_1ixnv")
+}
+
+[node name="Clock" type="CharacterBody2D" groups=["Pickup"]]
+script = ExtResource("1_pdqta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pdqta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_s7hhp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1ixnv")
+}

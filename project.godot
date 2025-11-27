@@ -46,6 +46,7 @@ enviromental_obi=""
 enemybounce=""
 activator=""
 player=""
+Pickup=""
 
 [input]
 
