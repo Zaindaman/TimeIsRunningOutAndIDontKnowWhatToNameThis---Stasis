@@ -3,9 +3,20 @@ extends CharacterBody2D
 @export var speed : int = 64
 @export var gravity : float = 500
 var bounced 
+var isInversion 
 func _physics_process(delta: float) -> void:
 	# Base movement direction
 	var dir
+	if isInversion and GlobalValues.isBulletTime:
+		if scale == Vector2(-1,1) :
+			dir = Vector2(-1, 0).rotated(rotation)
+		else: 
+			dir = Vector2(1, 0).rotated(rotation)
+		
+		velocity.x = dir.x * speed
+		velocity.y += gravity * delta
+		move_and_slide()
+		return 
 	if scale == Vector2(-1,1) :
 		dir = Vector2(-1, 0).rotated(rotation)
 	else: 
