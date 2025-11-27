@@ -1,3 +1,69 @@
-[gd_scene format=3 uid="uid://d3833cugdryos"]
+[gd_scene load_steps=9 format=4 uid="uid://d3833cugdryos"]
+
+[ext_resource type="TileSet" uid="uid://dch0p1c1hspwa" path="res://Assets/Tilemap.tres" id="1_k7nyf"]
+[ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="2_o8sru"]
+[ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="3_twwkc"]
+[ext_resource type="PackedScene" uid="uid://cetyvsj3t1o4d" path="res://Scenes/laser.tscn" id="4_tihmm"]
+[ext_resource type="PackedScene" uid="uid://buny7ajxygh3c" path="res://Scenes/LaserButton.tscn" id="5_ia4wt"]
+[ext_resource type="PackedScene" uid="uid://8fp84xjwwcre" path="res://Scenes/ButtonActivatedDoor.tscn" id="6_5tdg8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4p81x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwo50"]
+size = Vector2(48, 12)
 
 [node name="1" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+position = Vector2(220.60126, 38.067856)
+tile_map_data = PackedByteArray("AAD6/wMAAQAGAAEAAAAPAAcAAQAGAAEAAAAHAAcAAQAGAAEAAAAGAAcAAQAGAAEAAAAFAAcAAQAGAAEAAAAEAAcAAQAGAAEAAAADAAcAAQAGAAEAAAACAAcAAQAGAAEAAAABAAcAAQAGAAEAAAAAAAcAAQAGAAEAAAD6/wYAAQAGAAEAAAD6/wUAAQAGAAEAAAD6/wQAAQAGAAEAAAAOAAcAAQAGAAEAAAANAAcAAQAGAAEAAAAMAAcAAQAGAAEAAAALAAcAAQAGAAEAAAAKAAcAAQAGAAEAAAAJAAcAAQAGAAEAAAAIAAcAAQAGAAEAAAD//wcAAQAGAAEAAAD+/wcAAQAGAAEAAAD9/wcAAQAGAAEAAAD8/wcAAQAGAAEAAAD7/wcAAQAGAAEAAAD6/wcAAQAGAAEAAAD6/wIAAQAGAAEAAAD6/wEAAQAGAAEAAAD6/wAAAQAGAAEAAAD6////AQAGAAEAAAD6//7/AQAGAAEAAAD6//3/AQAGAAEAAAD6//z/AQAGAAEAAAD6//v/AQAGAAEAAAD6//r/AQAGAAEAAAD6//n/AQAGAAEAAAD7//j/AQAGAAEAAAD6//j/AQAGAAEAAAD8//j/AQAGAAEAAAD9//j/AQAGAAEAAAD+//j/AQAGAAEAAAD///j/AQAGAAEAAAAAAPj/AQAGAAEAAAABAPj/AQAGAAEAAAACAPj/AQAGAAEAAAADAPj/AQAGAAEAAAAEAPj/AQAGAAEAAAAFAPj/AQAGAAEAAAAGAPj/AQAGAAEAAAAHAPj/AQAGAAEAAAAIAPj/AQAGAAEAAAAJAPj/AQAGAAEAAAAKAPj/AQAGAAEAAAALAPj/AQAGAAEAAAAMAPj/AQAGAAEAAAANAPj/AQAGAAEAAAAOAPj/AQAGAAEAAAAPAPj/AQAGAAEAAAAQAPj/AQAGAAEAAAARAPj/AQAGAAEAAAASAPj/AQAGAAEAAAATAPj/AQAGAAEAAAAUAPj/AQAGAAEAAAAUAPn/AQAGAAEAAAAUAPr/AQAGAAEAAAAUAPv/AQAGAAEAAAAUAPz/AQAGAAEAAAAUAP3/AQAGAAEAAAAUAP7/AQAGAAEAAAAUAP//AQAGAAEAAAAUAAAAAQAGAAEAAAAUAAEAAQAGAAEAAAAUAAIAAQAGAAEAAAAUAAMAAQAGAAEAAAAUAAQAAQAGAAEAAAAUAAUAAQAGAAEAAAAUAAYAAQAGAAEAAAAUAAcAAQAGAAEAAAATAAcAAQAGAAEAAAASAAcAAQAGAAEAAAARAAcAAQAGAAEAAAAQAAcAAQAGAAEAAAAGAAYAAQAGAAEAAAAGAAUAAQAGAAEAAAAGAAQAAQAGAAEAAAAGAAEAAQAGAAEAAAAGAAAAAQAGAAEAAAD7/wEAAQACAAEAAAD8/wEAAQAGAAAAAAD9/wEAAQAEAAAAAAD7//7/AQACAAEAAAD8//7/AQAGAAAAAAD9//7/AQAEAAAAAAAKAPn/AQAAAAMAADATAAIAAQAAAAMAAGASAAQAAQAGAAIAAAATAAQAAQAGAAIAAAA=")
+tile_set = ExtResource("1_k7nyf")
+
+[node name="Player" parent="." instance=ExtResource("2_o8sru")]
+position = Vector2(170.601, 130)
+
+[node name="Begin" type="Node2D" parent="."]
+position = Vector2(220.60126, 38.067856)
+
+[node name="End" type="Node2D" parent="."]
+position = Vector2(247.136, 38.068)
+
+[node name="Area2D" type="Area2D" parent="End" groups=["end_level"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
+position = Vector2(282.864, 96.932)
+shape = SubResource("CircleShape2D_4p81x")
+
+[node name="Deathzone" type="Area2D" parent="." groups=["enviromental_obi"]]
+position = Vector2(20, 38.068)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(15.398743, 0.93214417)
+shape = SubResource("RectangleShape2D_wwo50")
+
+[node name="BulletSpawner" parent="." instance=ExtResource("3_twwkc")]
+position = Vector2(240, 138)
+rotation = -1.5707964
+
+[node name="Laser" parent="." instance=ExtResource("4_tihmm")]
+position = Vector2(388.6, -63)
+rotation = -4.712389
+
+[node name="Laser2" parent="." instance=ExtResource("4_tihmm")]
+position = Vector2(530, 78)
+rotation = 3.1415927
+
+[node name="LaserButton" parent="." instance=ExtResource("5_ia4wt")]
+position = Vector2(389, 142)
+rotation = 1.5707964
+
+[node name="ButtonActivatedDoor" parent="." instance=ExtResource("6_5tdg8")]
+position = Vector2(324, 86)
+
+[node name="LaserButton2" parent="." instance=ExtResource("5_ia4wt")]
+position = Vector2(148, 78)
+rotation = 3.1415927
+
+[node name="ButtonActivatedDoor2" parent="." instance=ExtResource("6_5tdg8")]
+position = Vector2(516, 134)

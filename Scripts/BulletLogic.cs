@@ -53,6 +53,7 @@ public partial class BulletLogic : Node2D
         }
         else
         {
+
             _area2D.Monitorable = false;
             _lifetimeTimer.Paused = true;
         }
