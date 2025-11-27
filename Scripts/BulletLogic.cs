@@ -14,18 +14,9 @@ public partial class BulletLogic : CharacterBody2D
     }
 
     // Backing field for inversion state
-    private bool _isInversion = false;
+    public bool isInversion { get; set; } = false;
 
-    // Property to control inversion
-    public bool IsInversion
-    {
-        get => _isInversion;
-        set
-        {
-            _isInversion = value;
 
-        }
-    }
 
 
     // Call this from the spawner to set direction
@@ -39,7 +30,7 @@ public partial class BulletLogic : CharacterBody2D
 
         if (globalValues.isBulletTime)
         {
-            if (IsInversion)
+            if (isInversion)
             {
                 Vector2 forward = Transform.X * _direction;
                 Position += forward * Speed * (float)delta;

@@ -22,11 +22,8 @@ public partial class InversionFieldLogic : Area2D
 
     private void OnBodyEntered(Node body)
     {
-        // Only apply inversion if bullet time is active
-        if (!globalValues.isBulletTime)
-            return;
 
-        var prop = body.GetType().GetProperty("IsInversion");
+        var prop = body.GetType().GetProperty("isInversion");
         if (prop != null)
         {
             prop.SetValue(body, true);
@@ -36,11 +33,7 @@ public partial class InversionFieldLogic : Area2D
 
     private void OnBodyExited(Node body)
     {
-        // Only remove inversion if bullet time is active
-        if (!globalValues.isBulletTime)
-            return;
-
-        var prop = body.GetType().GetProperty("IsInversion");
+        var prop = body.GetType().GetProperty("isInversion");
         if (prop != null)
         {
             prop.SetValue(body, false);
