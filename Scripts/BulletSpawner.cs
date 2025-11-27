@@ -5,30 +5,25 @@ public partial class BulletSpawner : CharacterBody2D
 {
     [Export] public PackedScene Bullet;
     [Export] public float xOffsetDistance = 100f;
-    // 🎯 NEW: Export a float for the vertical offset
     [Export] public float yOffsetDistance = 0f;
 
-	private GlobalValues globalValues;
+    // ... (GlobalValues and Timer setup remains the same) ...
+    private GlobalValues globalValues;
+    private Timer _myTimer;
 
-	private Timer _myTimer;
+    public override void _Ready()
+    {
+        ProcessMode = ProcessModeEnum.Always;
 
-	public override void _Ready()
-	{
-		ProcessMode = ProcessModeEnum.Always;
-
-		globalValues = GetNode<GlobalValues>("/root/GlobalValues");
-
-
+        globalValues = GetNode<GlobalValues>("/root/GlobalValues");
         _myTimer = GetNode<Timer>("Timer");
-
-        // Start the timer immediately so the pause/unpause logic works
         _myTimer.Start();
-
-        _myTimer.Timeout += _on_timer_timeout; // Connect the Timeout signal
+        _myTimer.Timeout += _on_timer_timeout;
     }
 
     public override void _Process(double delta)
     {
+        // ... (Pause/Unpause logic remains the same) ...
         if (globalValues.isBulletTime)
         {
             if (!_myTimer.IsStopped())
@@ -45,15 +40,8 @@ public partial class BulletSpawner : CharacterBody2D
         }
     }
 
-    public void PauseTimer()
-    {
-        _myTimer.Stop(); // Stop preserves time_left, acting as a pause
-    }
-
-    public void UnpauseTimer()
-    {
-        _myTimer.Start(); // Start resumes or restarts the timer
-    }
+    public void PauseTimer() { _myTimer.Stop(); }
+    public void UnpauseTimer() { _myTimer.Start(); }
 
 
     private void _on_timer_timeout()
@@ -61,27 +49,32 @@ public partial class BulletSpawner : CharacterBody2D
         if (Bullet == null)
             return;
 
-		// Instantiate the bullet
-		BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
+        BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
 
-        // 🎯 FIX: Horizontal offset (along local X-axis)
-        Vector2 xOffset = Transform.X * xOffsetDistance * MathF.Sign(GlobalScale.X);
+        // 1. Get the forward vector. This correctly handles spawner rotation and flip/scale.
+        // Transform.X always points along the node's local X-axis.
+        Vector2 forwardVector = Transform.X.Normalized();
 
-        // Transform.Y gives the local 'up' direction regardless of spawner rotation
-        Vector2 yOffset = Transform.Y * yOffsetDistance;
+        // 2. Calculate the perpendicular (local Y) vector.
+        Vector2 perpendicularVector = Transform.Y;
 
-        // Combine the spawner's position, the horizontal, and the vertical offsets
-        Vector2 spawnPosition = GlobalPosition + xOffset + yOffset;
+        // 3. NEW SPAWN POSITION CALCULATION:
+        // Use the forward vector for the X offset, and the perpendicular vector for the Y offset.
+        Vector2 spawnPosition = GlobalPosition
+                              + (forwardVector * xOffsetDistance)
+                              + (perpendicularVector * yOffsetDistance);
 
-        newBullet.Position = spawnPosition;
+        newBullet.GlobalPosition = spawnPosition; // Use GlobalPosition when setting to scene
 
-		// Set the bullet's movement direction based on spawner's X scale
-		newBullet.SetDirection(GlobalScale.X);
+        // 4. Set the bullet's rotation to match the spawner.
+        // This is the cleanest way to set the bullet's direction.
+        newBullet.GlobalRotation = GlobalRotation;
 
-		// Optional: match bullet rotation to spawner
-		newBullet.GlobalRotation = GlobalRotation;
+        // 5. Tell the bullet its base direction is simply '1' (forward). 
+        // The rotation already handles the facing direction.
+        newBullet.SetDirection(1f);
 
-		// Add bullet to the current scene
-		GetTree().CurrentScene.AddChild(newBullet);
-	}
+        // Add bullet to the current scene
+        GetTree().CurrentScene.AddChild(newBullet);
+    }
 }
