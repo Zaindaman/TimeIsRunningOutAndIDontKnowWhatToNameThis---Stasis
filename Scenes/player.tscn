@@ -89,6 +89,7 @@ offset_right = -211.0
 offset_bottom = -103.0
 scale = Vector2(3, 3)
 max_value = 5.0
+step = 0.01
 value = 5.0
 texture_under = ExtResource("3_fkybt")
 texture_over = ExtResource("4_x3wgy")

@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://dcg2vmbm81w60" path="res://Scripts/clock.gd" id="1_pdqta"]
 [ext_resource type="Texture2D" uid="uid://1j0jnnj7atpf" path="res://Assets/pickup.png" id="1_s7hhp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pdqta"]
-radius = 10.049875
-
 [sub_resource type="Animation" id="Animation_ga67c"]
 resource_name = "Bob"
 tracks/0/type = "value"
@@ -42,11 +39,12 @@ _data = {
 &"RESET": SubResource("Animation_1ixnv")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdqta"]
+radius = 10.049875
+
 [node name="Clock" type="CharacterBody2D" groups=["Pickup"]]
 script = ExtResource("1_pdqta")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_pdqta")
+pickup = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -56,3 +54,8 @@ texture = ExtResource("1_s7hhp")
 libraries = {
 &"": SubResource("AnimationLibrary_1ixnv")
 }
+
+[node name="Area2D" type="Area2D" parent="." groups=["Pickup"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pdqta")

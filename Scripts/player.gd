@@ -12,13 +12,17 @@ var is_on_jumpable
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	self.position = $"../Begin".position
-	if chapter2:
+	if chapter2 == false:
 		$TextureProgressBar2.visible = false
 		$TextureProgressBar2.max_value = max_time
+	else:
+		$TextureProgressBar2.max_value = max_time
+		$TextureProgressBar2.visible = true
 func _physics_process(delta: float) -> void:
 	if chapter2 and GlobalValues.isBulletTime == true:
 		time_remaining -= delta
 		$TextureProgressBar2.value = time_remaining
+		print(time_remaining)
 		if time_remaining == 0:
 			GlobalValues.isBulletTime = false
 			$Label.text = "Bullet time NOT ACTIVE"
@@ -79,18 +83,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("enviromental_obi"):
 		var lvl = LevelManager.get_lvl()
 		LevelManager.change_level(lvl)
-
+	elif area.is_in_group("Pickup"):
+		print("picked up",area.get_parent().pickup)
+		time_remaining += area.get_parent().pickup
+		if time_remaining > $TextureProgressBar2.max_value:
+			time_remaining = $TextureProgressBar2.max_value
+		$TextureProgressBar2.value = time_remaining
+		area.get_parent().queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemybounce"):
 		print("bounced")
 		velocity.y = JUMP_FORCE + -100
-	elif body.is_in_group("Pickup"):
-		time_remaining += body.pickup
-		if time_remaining > $TextureProgressBar2.max_value:
-			time_remaining = $TextureProgressBar2.max_value
-		$TextureProgressBar2.value = time_remaining
+	
 	
 
 

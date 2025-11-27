@@ -4,7 +4,8 @@ var enemy = preload("res://Scenes/enemy_basic.tscn")
 @export var TimeBetweenSpawn : float
 var isInversion
 func _ready() -> void:
-	$"Timer".start(TimeBetweenSpawn)
+	$Timer.start(TimeBetweenSpawn)
+
 
 func _process(_delta: float) -> void:
 	if GlobalValues.isBulletTime:

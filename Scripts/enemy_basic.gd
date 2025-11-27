@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var gravity : float = 500
 var bounced 
 var isInversion 
+func _ready() -> void:
+	print("spawned")
 func _physics_process(delta: float) -> void:
 	# Base movement direction
 	var dir
