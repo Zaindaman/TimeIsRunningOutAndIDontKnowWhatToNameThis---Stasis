@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		var lvl = LevelManager.get_lvl()
 		LevelManager.change_level(lvl)
 	var dir = get_input_direction()
-	
+	play_animation(dir)
 	if Input.is_action_just_pressed("CallBulletTime"):
 		if GlobalValues.isBulletTime == true:
 			GlobalValues.isBulletTime = false
@@ -70,6 +70,15 @@ func get_input_direction() -> Vector2:
 
 	return dir
 
+func play_animation(dir):
+	if dir.x >= 0.5:
+		$AnimatedSprite2D.flip_h = false
+		$AnimatedSprite2D.play("walk")
+	elif dir.x <= -0.5:
+		$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D.play("walk")
+	else: 
+		$AnimatedSprite2D.play("stand")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Reset_zone"):
