@@ -11,5 +11,5 @@ points = PackedVector2Array(0, 0, 433, 0)
 width = 2.0
 default_color = Color(1, 0.050980393, 0, 1)
 
-[node name="RayCast2D" type="RayCast2D" parent="." groups=["activator"]]
+[node name="RayCast2D" type="RayCast2D" parent="." groups=["activator", "enviromental_obi"]]
 target_position = Vector2(1000, 0)
