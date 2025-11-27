@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://b468i0i6ery7l"]
 
 [ext_resource type="Script" uid="uid://cqwd8bwsktokp" path="res://Scripts/BulletSpawner.cs" id="1_4fhvc"]
-[ext_resource type="Texture2D" uid="uid://bg4yd5lrm58en" path="res://icon.svg" id="1_ju4wr"]
 [ext_resource type="PackedScene" uid="uid://dk17q30dh5km4" path="res://Scenes/bullet.tscn" id="2_1jpf4"]
+[ext_resource type="Texture2D" uid="uid://ousb5bwe4hvd" path="res://Assets/bullet launcher.png" id="3_1jpf4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fhvc"]
-size = Vector2(128, 128.5)
+size = Vector2(92, 88)
 
 [node name="BulletSpawner" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -13,14 +13,15 @@ script = ExtResource("1_4fhvc")
 Bullet = ExtResource("2_1jpf4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ju4wr")
+rotation = 1.5707964
+scale = Vector2(3, 3)
+texture = ExtResource("3_1jpf4")
 
 [node name="BulletSpawnerNode" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.125)
+position = Vector2(-1, 0)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_4fhvc")
 

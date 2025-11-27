@@ -8,7 +8,9 @@ var direction := 1
 var isInversion
 func _ready():
 	start_position = global_position
-
+	$AnimatedSprite2D3.play("default")
+	$AnimatedSprite2D2.play("default")
+	$AnimatedSprite2D.play("default")
 func _physics_process(_delta):
 	# Move enemy horizontally
 	if isInversion and GlobalValues.isBulletTime:

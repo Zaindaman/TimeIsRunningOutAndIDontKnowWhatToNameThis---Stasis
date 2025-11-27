@@ -13,6 +13,7 @@ script = ExtResource("1_oduel")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 1.9999981)
+rotation = 3.1415927
 scale = Vector2(3, 3)
 texture = ExtResource("2_oduel")
 
@@ -21,7 +22,7 @@ position = Vector2(0, 2)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_oduel")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="Enemyarea" type="CollisionShape2D" parent="Area2D" groups=["enemybounce"]]
 position = Vector2(0, 2)

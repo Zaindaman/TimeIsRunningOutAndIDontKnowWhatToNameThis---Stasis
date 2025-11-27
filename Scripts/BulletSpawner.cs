@@ -8,15 +8,15 @@ public partial class BulletSpawner : CharacterBody2D
     // 🎯 NEW: Export a float for the vertical offset
     [Export] public float yOffsetDistance = 0f;
 
-    private GlobalValues globalValues;
+	private GlobalValues globalValues;
 
-    private Timer _myTimer;
+	private Timer _myTimer;
 
-    public override void _Ready()
-    {
-        ProcessMode = ProcessModeEnum.Always;
+	public override void _Ready()
+	{
+		ProcessMode = ProcessModeEnum.Always;
 
-        globalValues = GetNode<GlobalValues>("/root/GlobalValues");
+		globalValues = GetNode<GlobalValues>("/root/GlobalValues");
 
 
         _myTimer = GetNode<Timer>("Timer");
@@ -61,8 +61,8 @@ public partial class BulletSpawner : CharacterBody2D
         if (Bullet == null)
             return;
 
-        // Instantiate the bullet
-        BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
+		// Instantiate the bullet
+		BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
 
         // 🎯 FIX: Horizontal offset (along local X-axis)
         Vector2 xOffset = Transform.X * xOffsetDistance * MathF.Sign(GlobalScale.X);
@@ -75,13 +75,13 @@ public partial class BulletSpawner : CharacterBody2D
 
         newBullet.Position = spawnPosition;
 
-        // Set the bullet's movement direction based on spawner's X scale
-        newBullet.SetDirection(GlobalScale.X);
+		// Set the bullet's movement direction based on spawner's X scale
+		newBullet.SetDirection(GlobalScale.X);
 
-        // Optional: match bullet rotation to spawner
-        newBullet.GlobalRotation = GlobalRotation;
+		// Optional: match bullet rotation to spawner
+		newBullet.GlobalRotation = GlobalRotation;
 
-        // Add bullet to the current scene
-        GetTree().CurrentScene.AddChild(newBullet);
-    }
+		// Add bullet to the current scene
+		GetTree().CurrentScene.AddChild(newBullet);
+	}
 }

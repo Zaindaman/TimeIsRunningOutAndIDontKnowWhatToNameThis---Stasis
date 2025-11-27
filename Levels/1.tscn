@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://1u44odebxyf8"]
+[gd_scene load_steps=7 format=4 uid="uid://1u44odebxyf8"]
 
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="1_dhllp"]
 [ext_resource type="TileSet" uid="uid://dch0p1c1hspwa" path="res://Assets/Tilemap.tres" id="1_udf8s"]
 [ext_resource type="PackedScene" uid="uid://xqyrtmn0rbmj" path="res://Scenes/spike.tscn" id="2_y0prk"]
 [ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="4_koob3"]
-[ext_resource type="Script" uid="uid://8qk8l7rqyi42" path="res://Scripts/enemyspawn.gd" id="5_re5x3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0prk"]
 size = Vector2(1151.5, 20)
@@ -75,12 +74,3 @@ position = Vector2(-132, 5)
 position = Vector2(107, 85)
 rotation = -1.5707964
 offsetDistance = 0.0
-
-[node name="Spawner" type="Node2D" parent="."]
-position = Vector2(-74, -67)
-script = ExtResource("5_re5x3")
-TimeBetweenSpawn = 1.5
-
-[node name="Timer" type="Timer" parent="Spawner"]
-
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
