@@ -10,6 +10,7 @@ var is_on_jumpable
 @export var max_time : float
 @export var time_remaining : float = 5
 func _ready() -> void:
+	$HourglassUi.set_frame_and_progress(0, 0.0)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	self.position = $"../Begin".position
 	if chapter2 == false:
@@ -25,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		print(time_remaining)
 		if time_remaining == 0:
 			GlobalValues.isBulletTime = false
-			$Label.text = "Bullet time NOT ACTIVE"
+
 
 	if Input.is_action_just_pressed("Reset"):
 		var lvl = LevelManager.get_lvl()
@@ -35,10 +36,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("CallBulletTime"):
 		if GlobalValues.isBulletTime == true:
 			GlobalValues.isBulletTime = false
-			$Label.text = "Bullet time NOT ACTIVE"
+			$HourglassUi.set_frame_and_progress(0, 0.0)
 		else:
 			GlobalValues.isBulletTime = true
-			$Label.text = "Bullet time ACTIVE"
+
+			$HourglassUi.play("default")
 		
 	# Horizontal movement
 	velocity.x = dir.x * SPEED
