@@ -1,64 +1,44 @@
 using Godot;
 using System;
 
-public partial class BulletLogic : CharacterBody2D
+// 1. Change the base class to Node2D
+public partial class BulletLogic : Node2D
 {
-    // Adjusted Speed for less jitter and more typical bullet appearance
-    [Export] public float Speed = 800f;
+    [Export] public float Speed = 50f;
 
-    private float _direction = 1f; // 1 = forward, -1 = backward (now always 1)
     private GlobalValues globalValues;
-
-    // A reference to the Area2D node
-    private Area2D _area2D;
 
     public bool isInversion { get; set; } = false;
 
+    // NOTE: If you need collision detection, make the root node an Area2D and manage it there.
+
     public override void _Ready()
     {
-        // Must run even if the game tree is paused elsewhere
+        // Still necessary for the custom pause logic to run
         ProcessMode = ProcessModeEnum.Always;
-
-        // Ensure you have a child Area2D named "Area2D" in your bullet scene
-        _area2D = GetNode<Area2D>("Area2D");
-        _area2D.Monitorable = true;
 
         globalValues = GetNode<GlobalValues>("/root/GlobalValues");
     }
 
-    // Called by the spawner. Now typically called with 1f.
-    public void SetDirection(float baseDirection)
+    // SetDirection is retained for spawner compatibility, but unused
+    public void SetDirection(float baseDirection) { }
+
+    // 2. Use _Process(double delta) for smooth, non-physics movement
+    public override void _Process(double delta)
     {
-        _direction = baseDirection;
+        // If NOT paused, OR (IF paused AND exempt)
+        if (!globalValues.isBulletTime || isInversion)
+        {
+            // Calculate the forward step amount
+            float step = Speed * (float)delta;
+
+            // 3. Move the position directly along the forward vector (Transform.X)
+            // This is the simplest straight-line movement and entirely bypasses MoveAndSlide().
+            Position += Transform.X.Normalized() * step;
+        }
+        // When paused, no movement happens because the loop skips the code block.
     }
 
-    // Movement must be handled in _PhysicsProcess for CharacterBody2D
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Vector2.Zero;
-
-        // --- Bullet Movement Logic ---
-
-        // If NOT in Bullet Time, OR (IF in Bullet Time AND Inversion is ON)
-        if (!globalValues.isBulletTime || (globalValues.isBulletTime && isInversion))
-        {
-            // Enable monitoring/collision detection
-            _area2D.Monitorable = true;
-
-            // FIX for Jitter: Rely purely on the bullet's current rotation (Transform.X) 
-            // for the forward vector. This is guaranteed to be consistent.
-            velocity = Transform.X * _direction * Speed;
-        }
-        else // We are in Bullet Time AND not Inversion (STOP)
-        {
-            // Disable monitoring/collision detection while the bullet is frozen
-            _area2D.Monitorable = false;
-            // velocity remains Vector2.Zero, causing the bullet to stop
-        }
-
-        // --- CharacterBody2D Movement ---
-
-        Velocity = velocity;
-        MoveAndSlide();
-    }
+    // NOTE: If you switch to Node2D, you must implement your own
+    // collision detection (e.g., using an Area2D child and checking signals).
 }

@@ -153,6 +153,9 @@ size = Vector2(131, 75)
 
 [node name="Player" parent="." instance=ExtResource("1_pqwfn")]
 position = Vector2(2, -19)
+chapter2 = false
+max_time = 0.0
+time_remaining = 5.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -183,7 +186,6 @@ position = Vector2(-185, -59)
 [node name="BulletSpawner" parent="." instance=ExtResource("6_e7mfo")]
 position = Vector2(234, -168)
 scale = Vector2(-0.5, 0.5)
-offsetDistance = 10.0
 
 [node name="InversionField" type="Area2D" parent="."]
 position = Vector2(424, -136)

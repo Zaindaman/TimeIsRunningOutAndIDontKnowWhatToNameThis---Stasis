@@ -4,83 +4,69 @@ using System;
 public partial class BulletSpawner : CharacterBody2D
 {
     [Export] public PackedScene Bullet;
-    [Export] public float xOffsetDistance = 100f;
-    [Export] public float yOffsetDistance = 0f; // Positive Y is down in Godot
+    [Export] public float xOffsetDistance = 200f;
+    [Export] public float yOffsetDistance = 0f;
 
     private GlobalValues globalValues;
     private Timer _myTimer;
 
     public override void _Ready()
     {
-        // Must run even if the game tree is paused elsewhere
         ProcessMode = ProcessModeEnum.Always;
-
         globalValues = GetNode<GlobalValues>("/root/GlobalValues");
-
-        // Assuming "Timer" is a direct child of the BulletSpawner node
         _myTimer = GetNode<Timer>("Timer");
         _myTimer.Start();
-        _myTimer.Timeout += _on_timer_timeout; // Connect the Timeout signal
+        _myTimer.Timeout += _on_timer_timeout;
     }
 
     public override void _Process(double delta)
     {
-        // Stop/Start logic is contained here for a custom pause system
+        // Timer pause/unpause logic remains clean
         if (globalValues.isBulletTime)
         {
             if (!_myTimer.IsStopped())
             {
-                PauseTimer();
+                _myTimer.Stop();
             }
         }
         else
         {
             if (_myTimer.IsStopped())
             {
-                UnpauseTimer();
+                _myTimer.Start();
             }
         }
     }
 
-    public void PauseTimer()
+    // Removed the separate PauseTimer/UnpauseTimer functions for brevity
+    // private void PauseTimer() { _myTimer.Stop(); }
+    // private void UnpauseTimer() { _myTimer.Start(); }
+
+
+    private void _on_timer_timeout()
     {
-        _myTimer.Stop();
-    }
+        if (Bullet == null)
+            return;
 
-    public void UnpauseTimer()
-    {
-        _myTimer.Start();
-    }
+        BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
 
-	private void _on_timer_timeout()
-	{
-		if (Bullet == null)
-			return;
-
-		BulletLogic newBullet = Bullet.Instantiate<BulletLogic>();
-
-        // 1. Get the direction vectors. Transform.X is the local forward vector, 
-        // and Transform.Y is the local up/down vector.
-        Vector2 forwardVector = Transform.X;
+        // Get vectors based on spawner rotation and scale
+        Vector2 forwardVector = Transform.X;
         Vector2 perpendicularVector = Transform.Y;
 
-        // 2. Calculate offsets without using GlobalScale.X for direction check.
-        // Transform.X already accounts for scale flips.
-        Vector2 spawnPosition = GlobalPosition
-                              + (forwardVector * xOffsetDistance)
-                              + (perpendicularVector * yOffsetDistance);
+        // Calculate spawn position
+        Vector2 spawnPosition = GlobalPosition
+               + (forwardVector * xOffsetDistance)
+               + (perpendicularVector * yOffsetDistance);
 
         newBullet.GlobalPosition = spawnPosition;
 
-        // 3. Set the bullet's rotation to match the spawner.
-        // This is the clean way to set the bullet's initial direction.
-        newBullet.GlobalRotation = GlobalRotation;
+        // The key to straight movement: set the bullet's rotation
+        newBullet.GlobalRotation = GlobalRotation;
 
-        // 4. Tell the bullet to always move forward (Direction = 1). 
-        // The rotation handles the facing direction.
-        newBullet.SetDirection(1f);
+        // SetDirection is now vestigial but called for completeness
+        newBullet.SetDirection(1f);
 
-		// Add bullet to the current scene
-		GetTree().CurrentScene.AddChild(newBullet);
-	}
+        GetTree().CurrentScene.AddChild(newBullet);
+    }
 }
