@@ -85,5 +85,7 @@ position = Vector2(392, -24)
 [node name="Laser3" parent="." instance=ExtResource("5_gwqor")]
 position = Vector2(363, -24)
 
+[connection signal="closedoor" from="Laser2" to="ButtonActivatedDoor" method="_on_laser_closedoor"]
+[connection signal="opendoor" from="Laser2" to="ButtonActivatedDoor" method="_on_laser_opendoor"]
 [connection signal="closedoor" from="Laser3" to="ButtonActivatedDoor3" method="_on_laser_closedoor"]
 [connection signal="opendoor" from="Laser3" to="ButtonActivatedDoor3" method="_on_laser_opendoor"]

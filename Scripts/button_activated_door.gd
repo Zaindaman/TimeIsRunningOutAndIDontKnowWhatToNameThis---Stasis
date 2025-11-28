@@ -20,3 +20,13 @@ func _on_laser_closedoor() -> void:
 func _on_laser_opendoor() -> void:
 	$AnimatedSprite2D.play("Open")
 	$CollisionShape2D.disabled = true
+
+func _on_laser_invertclosedoor() -> void:
+	$AnimatedSprite2D.play("Open")
+	$CollisionShape2D.disabled = true
+	
+
+
+func _on_laser_invertopendoor() -> void:
+	$AnimatedSprite2D.play("Close")
+	$CollisionShape2D.disabled = false
