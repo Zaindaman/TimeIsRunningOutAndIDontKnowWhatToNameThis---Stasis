@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c8i0xeohq5ppn"]
+[gd_scene load_steps=15 format=4 uid="uid://c8i0xeohq5ppn"]
 
 [ext_resource type="TileSet" uid="uid://dch0p1c1hspwa" path="res://Assets/Tilemap.tres" id="1_fptty"]
 [ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="2_oyusi"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://xqyrtmn0rbmj" path="res://Scenes/spike.tscn" id="7_qwx7m"]
 [ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="8_fptty"]
 [ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="9_ds25y"]
-[ext_resource type="PackedScene" uid="uid://6pcujs8wvwi8" path="res://Scenes/box.tscn" id="10_oyusi"]
+[ext_resource type="Script" uid="uid://8qk8l7rqyi42" path="res://Scripts/enemyspawn.gd" id="10_3yhok"]
 [ext_resource type="Script" uid="uid://b2yo2sv4p5woe" path="res://Scripts/BoxSpawn.gd" id="11_3yhok"]
+[ext_resource type="Texture2D" uid="uid://cyk8m8oau8x47" path="res://Assets/enemy spawner.png" id="11_t1nlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udn2r"]
 size = Vector2(20, 31.625)
@@ -55,14 +56,8 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="Enemy_basic" parent="." instance=ExtResource("9_ds25y")]
-position = Vector2(321, 65)
+position = Vector2(322, 65)
 inverted = true
-
-[node name="KillBox" type="Area2D" parent="Enemy_basic" groups=["enviromental_obi"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_basic/KillBox"]
-position = Vector2(-225, -78)
-shape = SubResource("RectangleShape2D_oyusi")
 
 [node name="Spike" parent="." instance=ExtResource("7_qwx7m")]
 position = Vector2(8, 95)
@@ -82,10 +77,33 @@ position = Vector2(10, 35)
 [node name="Laser" parent="." instance=ExtResource("7_ahuua")]
 position = Vector2(11, -56)
 
-[node name="Box" parent="." instance=ExtResource("10_oyusi")]
-position = Vector2(94, -86)
-script = ExtResource("11_3yhok")
-TimeBetweenSpawn = 0.0
+[node name="EnemySpawner" type="Node2D" parent="."]
+position = Vector2(321, 65)
+rotation = 3.1415927
+script = ExtResource("10_3yhok")
+TimeBetweenSpawn = 1.0
 
-[node name="Timer" type="Timer" parent="Box"]
-wait_time = 2.0
+[node name="Sprite2D" type="Sprite2D" parent="EnemySpawner"]
+texture = ExtResource("11_t1nlo")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+
+[node name="BoxSpawner" type="Node2D" parent="."]
+position = Vector2(96, -91)
+script = ExtResource("11_3yhok")
+TimeBetweenSpawn = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxSpawner"]
+texture = ExtResource("11_t1nlo")
+
+[node name="Timer" type="Timer" parent="BoxSpawner"]
+
+[node name="KillBox" type="Area2D" parent="." groups=["Reset_zone", "enviromental_obi"]]
+position = Vector2(321, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox" groups=["Reset_zone"]]
+position = Vector2(-225, -78)
+shape = SubResource("RectangleShape2D_oyusi")
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="BoxSpawner/Timer" to="BoxSpawner" method="_on_timer_timeout"]

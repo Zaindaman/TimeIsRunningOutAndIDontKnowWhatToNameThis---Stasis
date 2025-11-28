@@ -200,7 +200,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemybounce"):
 		print("bounced")
-		velocity.y = JUMP_FORCE + -100
+		velocity.y = JUMP_FORCE + -50
 	
 	
 
@@ -216,3 +216,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		# NEW: If the box leaving is the one we had in range, clear the reference
 		if area.get_parent() == box_in_range:
 			box_in_range = null
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.
