@@ -170,8 +170,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		LevelManager.change_level(lvl)
 	elif area.is_in_group("end_level"):
 		var lvl = LevelManager.get_lvl()
-		if lvl >= 10:
-			print(lvl)
+		#if lvl >= 10:
+			#print(lvl)
 		GlobalValues.levelNumber.append(int(lvl))
 		get_tree().change_scene_to_file("res://Scenes/level_finished.tscn")
 	elif area.is_in_group("enemy"):

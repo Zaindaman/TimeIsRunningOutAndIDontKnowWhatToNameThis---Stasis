@@ -21,8 +21,17 @@ var _is_inversion := false
 @export var inverted = false
 
 func _ready() -> void:
+	await get_tree().process_frame
+	print(inverted)
 	if inverted == true:
-		scale.x = -1
+		print("inverted enemy")
+		rotation = deg_to_rad(180)
+		animated_sprite_2d.flip_v = true
+		collision_shape_2d.rotation = deg_to_rad(180)
+		collision_shape_2d2.rotation = deg_to_rad(180)
+		collision_shape_2d2.position = Vector2(0,17.5)
+		collision_shape_2d3.rotation = deg_to_rad(180)
+		collision_shape_2d3.position = Vector2(0,-8)
 	print("spawned")
 	
 	

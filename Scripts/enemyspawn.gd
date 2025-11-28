@@ -3,6 +3,7 @@ extends Node2D
 var enemy = preload("res://Scenes/enemy_basic.tscn")
 @export var TimeBetweenSpawn : float
 var isInversion
+@export var invert = true
 func _ready() -> void:
 	$Timer.start(TimeBetweenSpawn)
 
@@ -19,6 +20,6 @@ func _on_timer_timeout():
 	var instance = enemy.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = global_position
-	if rotation != 0:
-		instance.inverted = true
+	print('telling the bot', invert)
+	instance.inverted = invert
 	$"Timer".start(TimeBetweenSpawn)

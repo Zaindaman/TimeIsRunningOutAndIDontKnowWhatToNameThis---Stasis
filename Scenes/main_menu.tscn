@@ -16,13 +16,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -497.0
-offset_top = 120.0
-offset_right = 497.0
-offset_bottom = 165.0
+offset_left = -496.0
+offset_top = 72.0
+offset_right = 498.0
+offset_bottom = 247.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-text = "TIME IS RUNNING OUT AND I DONT KNOW WHAT TO NAME THIS "
+theme_override_font_sizes/font_size = 128
+text = "STASIS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
