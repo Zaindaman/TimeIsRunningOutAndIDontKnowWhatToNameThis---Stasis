@@ -1,3 +1,91 @@
-[gd_scene format=3 uid="uid://c8i0xeohq5ppn"]
+[gd_scene load_steps=14 format=4 uid="uid://c8i0xeohq5ppn"]
 
-[node name="1" type="Node2D"]
+[ext_resource type="TileSet" uid="uid://dch0p1c1hspwa" path="res://Assets/Tilemap.tres" id="1_fptty"]
+[ext_resource type="PackedScene" uid="uid://78c38ipulmfu" path="res://Scenes/player.tscn" id="2_oyusi"]
+[ext_resource type="Texture2D" uid="uid://qfa6318eia8m" path="res://Assets/flag.png" id="3_3yhok"]
+[ext_resource type="PackedScene" uid="uid://8fp84xjwwcre" path="res://Scenes/ButtonActivatedDoor.tscn" id="4_t1nlo"]
+[ext_resource type="PackedScene" uid="uid://buny7ajxygh3c" path="res://Scenes/LaserButton.tscn" id="6_s7jni"]
+[ext_resource type="PackedScene" uid="uid://cetyvsj3t1o4d" path="res://Scenes/laser.tscn" id="7_ahuua"]
+[ext_resource type="PackedScene" uid="uid://xqyrtmn0rbmj" path="res://Scenes/spike.tscn" id="7_qwx7m"]
+[ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="8_fptty"]
+[ext_resource type="PackedScene" uid="uid://bqyb8653upbmr" path="res://Scenes/enemy_basic.tscn" id="9_ds25y"]
+[ext_resource type="PackedScene" uid="uid://6pcujs8wvwi8" path="res://Scenes/box.tscn" id="10_oyusi"]
+[ext_resource type="Script" uid="uid://b2yo2sv4p5woe" path="res://Scripts/BoxSpawn.gd" id="11_3yhok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udn2r"]
+size = Vector2(20, 31.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyusi"]
+size = Vector2(32, 25)
+
+[node name="4" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAUAAUAAQAGAAAAAAATAAUAAQAGAAAAAAASAAUAAQAGAAAAAAARAAUAAQAGAAAAAAAQAAUAAQAGAAAAAAAPAAUAAQAGAAAAAAAOAAUAAQAGAAAAAAANAAUAAQAGAAAAAAAMAAUAAQAGAAAAAAALAAUAAQAGAAAAAAAKAAUAAQAGAAAAAAAEAAUAAQAGAAAAAAAFAAUAAQAGAAAAAAAGAAUAAQAGAAAAAAAHAAUAAQAGAAAAAAAIAAUAAQAGAAAAAAAJAAUAAQAGAAAAAAAVAAUAAQAGAAAAAAD//wQAAQAFAAEAAAD//wMAAQAFAAEAAAD//wIAAQAFAAEAAAD//wEAAQAFAAEAAAD//wAAAQAFAAEAAAD/////AQAFAAEAAAD///7/AQAFAAEAAAD///3/AQAFAAEAAAD///z/AQAFAAEAAAD///v/AQAFAAEAAAD///r/AQAFAAEAAAAAAPn/AQAGAAIAAAABAPn/AQAGAAIAAAACAPn/AQAGAAIAAAADAPn/AQAGAAIAAAAEAPn/AQAGAAIAAAAFAPn/AQAGAAIAAAAGAPn/AQAGAAIAAAAHAPn/AQAGAAIAAAAIAPn/AQAGAAIAAAAJAPn/AQAGAAIAAAAKAPn/AQAGAAIAAAALAPn/AQAGAAIAAAAMAPn/AQAGAAIAAAANAPn/AQAGAAIAAAAOAPn/AQAGAAIAAAAPAPn/AQAGAAIAAAAQAPn/AQAGAAIAAAARAPn/AQAGAAIAAAASAPn/AQAGAAIAAAATAPn/AQAGAAIAAAAUAPn/AQAGAAIAAAAVAPn/AQADAAEAAAD//wUAAQAFAAIAAAD///n/AQAFAAAAAAAAAP3/AQAGAAEAAAABAP3/AQAGAAEAAAACAP3/AQAGAAEAAAADAP3/AQAGAAEAAAAEAP3/AQAGAAEAAAAEAP7/AQAGAAEAAAAEAP//AQAGAAEAAAAEAAAAAQAGAAEAAAAFAAAAAQAGAAEAAAAHAP//AQAGAAEAAAAPAAAAAQADAAEAAAAQAAAAAQADAAEAAAARAAAAAQADAAEAAAATAAAAAQADAAEAAAASAAAAAQADAAEAAAAUAAAAAQADAAEAAAAVAPr/AQAGAAEAAAAVAPv/AQAGAAEAAAAVAPz/AQAGAAEAAAAVAP3/AQAGAAEAAAAVAP7/AQAGAAEAAAAVAP//AQAGAAEAAAAVAAAAAQAGAAEAAAAVAAEAAQADAAEAAAAVAAIAAQADAAEAAAAVAAMAAQADAAEAAAAVAAQAAQADAAEAAAATAP3/AQAGAAEAAAAUAP3/AQAGAAEAAAASAP3/AQAGAAEAAAAAAPz/AQAAAAMAAFAFAP//AQABAAQAAAAGAP//AQABAAQAAAAFAP7/AQABAAMAAAAGAP7/AQABAAMAAAAGAAAAAQAGAAEAAAAHAAAAAQAGAAEAAAAHAP7/AQAGAAEAAAA=")
+tile_set = ExtResource("1_fptty")
+
+[node name="Player" parent="." instance=ExtResource("2_oyusi")]
+position = Vector2(88, 56)
+
+[node name="Begin" type="Node2D" parent="."]
+position = Vector2(87, 55)
+
+[node name="End" type="Node2D" parent="."]
+position = Vector2(434, 63)
+
+[node name="Area2D" type="Area2D" parent="End"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
+position = Vector2(-108, -79.1875)
+shape = SubResource("RectangleShape2D_udn2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="End"]
+
+[node name="Flag" type="Sprite2D" parent="End"]
+position = Vector2(-109, -79)
+texture = ExtResource("3_3yhok")
+
+[node name="ButtonActivatedDoor" parent="." instance=ExtResource("4_t1nlo")]
+position = Vector2(296, -16)
+
+[node name="LaserButton" parent="." instance=ExtResource("6_s7jni")]
+position = Vector2(328, -55)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Enemy_basic" parent="." instance=ExtResource("9_ds25y")]
+position = Vector2(321, 65)
+inverted = true
+
+[node name="KillBox" type="Area2D" parent="Enemy_basic" groups=["enviromental_obi"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_basic/KillBox"]
+position = Vector2(-225, -78)
+shape = SubResource("RectangleShape2D_oyusi")
+
+[node name="Spike" parent="." instance=ExtResource("7_qwx7m")]
+position = Vector2(8, 95)
+
+[node name="Spike2" parent="." instance=ExtResource("7_qwx7m")]
+position = Vector2(25, 95)
+
+[node name="Spike3" parent="." instance=ExtResource("7_qwx7m")]
+position = Vector2(42, 95)
+
+[node name="Spike4" parent="." instance=ExtResource("7_qwx7m")]
+position = Vector2(57, 95)
+
+[node name="BulletSpawner" parent="." instance=ExtResource("8_fptty")]
+position = Vector2(10, 35)
+
+[node name="Laser" parent="." instance=ExtResource("7_ahuua")]
+position = Vector2(11, -56)
+
+[node name="Box" parent="." instance=ExtResource("10_oyusi")]
+position = Vector2(94, -86)
+script = ExtResource("11_3yhok")
+TimeBetweenSpawn = 0.0
+
+[node name="Timer" type="Timer" parent="Box"]
+wait_time = 2.0
