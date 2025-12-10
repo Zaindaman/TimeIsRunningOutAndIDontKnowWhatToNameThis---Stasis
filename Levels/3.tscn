@@ -37,7 +37,7 @@ position = Vector2(187, 65)
 [node name="End" type="Node2D" parent="."]
 position = Vector2(434, 63)
 
-[node name="Area2D" type="Area2D" parent="End"]
+[node name="Area2D" type="Area2D" parent="End" groups=["end_level"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D" groups=["end_level"]]
 position = Vector2(-424, -135.25)
