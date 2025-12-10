@@ -36,7 +36,7 @@ position = Vector2(434, 63)
 
 [node name="Area2D" type="Area2D" parent="End" groups=["end_level"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D" groups=["end_level"]]
 position = Vector2(115, 0)
 shape = SubResource("RectangleShape2D_7yid6")
 

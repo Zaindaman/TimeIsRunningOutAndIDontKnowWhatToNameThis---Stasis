@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xqyrtmn0rbmj" path="res://Scenes/spike.tscn" id="7_qwx7m"]
 [ext_resource type="PackedScene" uid="uid://b468i0i6ery7l" path="res://Scenes/bullet_spawner.tscn" id="8_fptty"]
 [ext_resource type="Script" uid="uid://8qk8l7rqyi42" path="res://Scripts/enemyspawn.gd" id="10_3yhok"]
-[ext_resource type="Script" path="res://Scripts/BoxSpawn.gd" id="11_3yhok"]
+[ext_resource type="Script" uid="uid://b2yo2sv4p5woe" path="res://Scripts/BoxSpawn.gd" id="11_3yhok"]
 [ext_resource type="Texture2D" uid="uid://cyk8m8oau8x47" path="res://Assets/enemy spawner.png" id="11_t1nlo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udn2r"]
@@ -36,7 +36,7 @@ position = Vector2(434, 63)
 
 [node name="Area2D" type="Area2D" parent="End"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D" groups=["end_level"]]
 position = Vector2(-108, -79.1875)
 shape = SubResource("RectangleShape2D_udn2r")
 
