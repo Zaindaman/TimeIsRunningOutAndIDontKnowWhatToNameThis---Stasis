@@ -16,7 +16,9 @@ func _process(_delta: float) -> void:
 		$"Timer".paused = false
 	else:
 		$"Timer".paused = false
+		
 func _on_timer_timeout():
+	print("Spawning thingie")
 	var instance = enemy.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = global_position

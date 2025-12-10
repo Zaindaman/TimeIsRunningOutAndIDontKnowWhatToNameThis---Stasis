@@ -23,21 +23,26 @@ public partial class InversionFieldLogic : Area2D
 	private void OnBodyEntered(Node body)
 	{
 
-		var prop = body.GetType().GetProperty("isInversion");
+        if (body is CharacterBody2D charBody)
+        {
+            charBody.Set("isInversion", true);
+            var prop = charBody.GetType().GetProperty("isInversion");
+            if (prop != null) prop.SetValue(charBody, true);
+            GD.Print($"{charBody.Name} exited inversion field (bullet time active)");
+        }
 
-		body.Set("isInversion", true);
-		prop.SetValue(body, true);
-		GD.Print($"{body.Name} entered inversion field (bullet time active)");
+    }
 
-	}
-
-	private void OnBodyExited(Node body)
-	{
-		var prop = body.GetType().GetProperty("isInversion");
-		body.Set("isInversion", false);
-		prop.SetValue(body, false);
-		GD.Print($"{body.Name} exited inversion field (bullet time active)");
-	}
+    private void OnBodyExited(Node body)
+    {
+        if (body is CharacterBody2D charBody)
+        {
+            charBody.Set("isInversion", false);
+            var prop = charBody.GetType().GetProperty("isInversion");
+            if (prop != null) prop.SetValue(charBody, false);
+            GD.Print($"{charBody.Name} exited inversion field (bullet time active)");
+        }
+    }
 
 
 }
