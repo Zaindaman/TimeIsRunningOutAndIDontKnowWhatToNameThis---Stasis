@@ -7,6 +7,7 @@
 size = Vector2(16, 16)
 
 [node name="Box" type="RigidBody2D" groups=["box"]]
+gravity_scale = 0.3
 script = ExtResource("1_ego7h")
 
 [node name="Box" type="Sprite2D" parent="."]
