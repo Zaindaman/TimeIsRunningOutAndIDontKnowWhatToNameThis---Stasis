@@ -25,7 +25,7 @@ chapter2 = true
 max_time = 5.0
 
 [node name="Clock" parent="." instance=ExtResource("3_l7cqr")]
-position = Vector2(248, 68)
+position = Vector2(251, 47)
 pickup = 2.0
 
 [node name="Begin" type="Node2D" parent="."]

@@ -13,6 +13,8 @@ var box_in_range = null
 @export var max_time : float
 @export var time_remaining : float = 5
 @onready var hold_position = %HoldPosition
+
+
 func _ready() -> void:
 	$HourglassUi.set_frame_and_progress(0, 0.0)
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -23,12 +25,16 @@ func _ready() -> void:
 	else:
 		$TextureProgressBar2.max_value = max_time
 		$TextureProgressBar2.visible = true
+		
+		
+		
 func _physics_process(delta: float) -> void:
 	if chapter2 and GlobalValues.isBulletTime == true:
 		time_remaining -= delta
 		$TextureProgressBar2.value = time_remaining
 		print(time_remaining)
 		if time_remaining == 0:
+			$HourglassUi.set_frame_and_progress(0, 0.0)
 			GlobalValues.isBulletTime = false
 	
 	if Input.is_action_just_pressed("Interact"):
@@ -47,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		LevelManager.change_level(lvl)
 	var dir = get_input_direction()
 	play_animation(dir)
-	if Input.is_action_just_pressed("CallBulletTime"):
+	if Input.is_action_just_pressed("CallBulletTime") && time_remaining == 0:
 		if GlobalValues.isBulletTime == true:
 			GlobalValues.isBulletTime = false
 			$HourglassUi.set_frame_and_progress(0, 0.0)
@@ -74,6 +80,9 @@ func _physics_process(delta: float) -> void:
 			held_box = null
 	move_and_slide()
 
+
+
+
 func get_input_direction() -> Vector2:
 	var dir := Vector2.ZERO
 
@@ -90,6 +99,9 @@ func get_input_direction() -> Vector2:
 
 	return dir
 
+
+
+
 func play_animation(dir):
 	if dir.x >= 0.5:
 		$AnimatedSprite2D.flip_h = false
@@ -101,6 +113,9 @@ func play_animation(dir):
 		%HoldPosition.position = Vector2(-16,0)
 	else: 
 		$AnimatedSprite2D.play("stand")
+
+
+
 
 func pickup_box(box_node):
 	# Check if we are already holding something or the box is invalid
@@ -133,6 +148,9 @@ func pickup_box(box_node):
 	# We've picked it up, so it's no longer "in range"
 	box_in_range = null
 
+
+
+
 # NEW: Function to drop a box
 func drop_box():
 	if not held_box or not is_instance_valid(held_box):
@@ -162,6 +180,9 @@ func drop_box():
 
 	# Clear the reference
 	held_box = null
+
+
+
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("area entered player")
