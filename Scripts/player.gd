@@ -9,6 +9,8 @@ var is_on_jumpable
 var held_box = null
 var box_in_range = null
 
+var chapter2TimeRemains = true
+
 @export var chapter2 : bool = false
 @export var max_time : float
 @export var time_remaining : float = 5
@@ -33,9 +35,14 @@ func _physics_process(delta: float) -> void:
 		time_remaining -= delta
 		$TextureProgressBar2.value = time_remaining
 		print(time_remaining)
-		if time_remaining == 0:
+		chapter2TimeRemains = true
+		if time_remaining <= 0:
+			time_remaining = 0
 			$HourglassUi.set_frame_and_progress(0, 0.0)
 			GlobalValues.isBulletTime = false
+			chapter2TimeRemains = false
+			print("this has been done by code")
+			
 	
 	if Input.is_action_just_pressed("Interact"):
 		print("justed pressed interact")
@@ -53,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		LevelManager.change_level(lvl)
 	var dir = get_input_direction()
 	play_animation(dir)
-	if Input.is_action_just_pressed("CallBulletTime") && time_remaining == 0:
+	if Input.is_action_just_pressed("CallBulletTime") && chapter2TimeRemains:
 		if GlobalValues.isBulletTime == true:
 			GlobalValues.isBulletTime = false
 			$HourglassUi.set_frame_and_progress(0, 0.0)
